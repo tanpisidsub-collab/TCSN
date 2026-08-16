@@ -10,25 +10,42 @@
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col">
     <!-- Navbar -->
-    <nav class="border-b border-slate-800 bg-slate-900/50 p-4">
-        <div class="max-w-5xl mx-auto flex justify-between items-center">
+    <nav class="border-b border-slate-800 bg-slate-900/50 p-4 sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto flex justify-between items-center overflow-x-auto">
             <h1 class="font-bold text-xl uppercase tracking-widest text-cyan-400">TCSN</h1>
-            <div class="space-x-4 text-sm">
-                <button onclick="show('home')" class="hover:text-cyan-400">หน้าแรก</button>
-                <button onclick="show('about')" class="hover:text-cyan-400">เกี่ยวกับเรา</button>
+            <div class="space-x-4 text-sm whitespace-nowrap">
+                <button onclick="show('home')" class="hover:text-cyan-400 transition">หน้าแรก</button>
+                <button onclick="show('executive')" class="hover:text-cyan-400 transition">ฝ่ายบริหาร</button>
+                <button onclick="show('about')" class="hover:text-cyan-400 transition">เกี่ยวกับเรา</button>
+                <button onclick="show('services')" class="hover:text-cyan-400 transition">บริการ</button>
             </div>
         </div>
     </nav>
 
     <!-- Main Content -->
     <main class="flex-grow max-w-5xl mx-auto p-6 w-full">
-        <div id="home">
-            <h2 class="text-3xl font-bold mb-6 uppercase">ยินดีต้อนรับสู่ TCSN</h2>
-            <p class="text-slate-400 mb-8">มาตรฐานใหม่แห่งความปลอดภัยไซเบอร์ ภายใต้การบริหารจัดการระดับมืออาชีพ</p>
+        <!-- หน้าแรก -->
+        <div id="home" class="space-y-4">
+            <h2 class="text-3xl font-bold uppercase text-cyan-400">ยินดีต้อนรับสู่ TCSN</h2>
+            <p class="text-slate-400">มาตรฐานใหม่แห่งความปลอดภัยไซเบอร์ ภายใต้การบริหารจัดการระดับมืออาชีพ</p>
         </div>
-        <div id="about" class="hidden">
-            <h2 class="text-3xl font-bold mb-6 uppercase">เกี่ยวกับเรา</h2>
+
+        <!-- ฝ่ายบริหาร -->
+        <div id="executive" class="hidden space-y-4">
+            <h2 class="text-3xl font-bold uppercase text-cyan-400">ฝ่ายบริหาร (Executive Board)</h2>
+            <p class="text-slate-400">คณะผู้บริหารและทีมงานผู้เชี่ยวชาญขับเคลื่อนยุทธศาสตร์ความปลอดภัยไซเบอร์</p>
+        </div>
+
+        <!-- เกี่ยวกับเรา -->
+        <div id="about" class="hidden space-y-4">
+            <h2 class="text-3xl font-bold uppercase text-cyan-400">เกี่ยวกับเรา</h2>
             <p class="text-slate-400">องค์กรอิสระที่มุ่งเน้นความปลอดภัยทางไซเบอร์เพื่อสังคมและธุรกิจอย่างครบวงจร</p>
+        </div>
+
+        <!-- บริการ -->
+        <div id="services" class="hidden space-y-4">
+            <h2 class="text-3xl font-bold uppercase text-cyan-400">บริการของเรา</h2>
+            <p class="text-slate-400">ระบบตรวจสอบ ป้องกัน และยกระดับมาตรฐานความปลอดภัยข้อมูลระดับองค์กร</p>
         </div>
     </main>
 
@@ -39,9 +56,13 @@
 
     <script>
         function show(id) {
-            document.getElementById('home').classList.add('hidden');
-            document.getElementById('about').classList.add('hidden');
-            document.getElementById(id).classList.remove('hidden');
+            const sections = ['home', 'executive', 'about', 'services'];
+            sections.forEach(sec => {
+                const el = document.getElementById(sec);
+                if (el) el.classList.add('hidden');
+            });
+            const target = document.getElementById(id);
+            if (target) target.classList.remove('hidden');
         }
     </script>
 </body>
