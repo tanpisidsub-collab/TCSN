@@ -24,13 +24,14 @@
 
     <!-- Main Content -->
     <main class="flex-grow max-w-5xl mx-auto p-6 w-full space-y-8">
-        <!-- หน้าแรก -->
+        
+        <!-- หน้าแรก (เปิดตัวที่หน้าแรกเสมอ) -->
         <div id="home" class="space-y-6">
             <h2 class="text-3xl font-bold uppercase text-cyan-400">ยินดีต้อนรับสู่ TCSN</h2>
             <p class="text-slate-400 text-lg">มาตรฐานใหม่แห่งความปลอดภัยไซเบอร์ ภายใต้การบริหารจัดการระดับมืออาชีพ</p>
         </div>
 
-        <!-- ฝ่ายบริหาร -->
+        <!-- ฝ่ายบริหาร (ซ่อนไว้ก่อน) -->
         <div id="executive" class="hidden space-y-4">
             <h2 class="text-3xl font-bold uppercase text-cyan-400">ฝ่ายบริหาร (Executive Board)</h2>
             <div class="p-6 rounded-lg bg-slate-900 border border-slate-800 inline-block">
@@ -39,7 +40,7 @@
             </div>
         </div>
 
-        <!-- เกี่ยวกับเรา -->
+        <!-- เกี่ยวกับเรา (ซ่อนไว้ก่อน) -->
         <div id="about" class="hidden space-y-4">
             <h2 class="text-3xl font-bold uppercase text-cyan-400">เกี่ยวกับเรา</h2>
             <div class="space-y-4 text-slate-300">
@@ -53,7 +54,7 @@
             </div>
         </div>
 
-        <!-- บริการ -->
+        <!-- บริการ (ซ่อนไว้ก่อน) -->
         <div id="services" class="hidden space-y-4">
             <h2 class="text-3xl font-bold uppercase text-cyan-400">บริการของเรา</h2>
             <p class="text-slate-400">ระบบตรวจสอบ ป้องกัน และยกระดับมาตรฐานความปลอดภัยข้อมูลระดับองค์กร</p>
@@ -67,13 +68,12 @@
 
     <script>
         function show(id) {
-            const sections = ['home', 'executive', 'about', 'services'];
-            sections.forEach(sec => {
-                const el = document.getElementById(sec);
-                if (el) el.classList.add('hidden');
+            // ซ่อนทุกหน้า
+            ['home', 'executive', 'about', 'services'].forEach(sec => {
+                document.getElementById(sec).classList.add('hidden');
             });
-            const target = document.getElementById(id);
-            if (target) target.classList.remove('hidden');
+            // แสดงหน้าเป้าหมาย
+            document.getElementById(id).classList.remove('hidden');
         }
     </script>
 </body>
