@@ -25,10 +25,30 @@
     <!-- Main Content -->
     <main class="flex-grow max-w-5xl mx-auto p-6 w-full space-y-8">
         
-        <!-- หน้าแรก (ไม่มีคลาส hidden เพื่อให้โชว์ทันที) -->
+        <!-- หน้าแรก (เพิ่มเนื้อหาแบบจัดเต็มให้แล้วครับ) -->
         <div id="home" class="space-y-6">
-            <h2 class="text-3xl font-bold uppercase text-cyan-400">ยินดีต้อนรับสู่ TCSN</h2>
-            <p class="text-slate-400 text-lg">มาตรฐานใหม่แห่งความปลอดภัยไซเบอร์ ภายใต้การบริหารจัดการระดับมืออาชีพ</p>
+            <div class="p-8 rounded-2xl bg-gradient-to-r from-slate-900 to-slate-900/50 border border-slate-800 shadow-2xl space-y-4">
+                <h2 class="text-3xl font-bold uppercase text-cyan-400">ยินดีต้อนรับสู่ TCSN</h2>
+                <p class="text-slate-300 text-lg leading-relaxed">
+                    มาตรฐานใหม่แห่งความปลอดภัยไซเบอร์ (Thai Cyber Security Normal) 
+                    ภายใต้การบริหารจัดการระดับมืออาชีพ มุ่งเน้นการยقระดับความปลอดภัยและปกป้องข้อมูลสำคัญขององค์กรอย่างครบวงจร
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="p-6 rounded-xl bg-slate-900 border border-slate-800 space-y-2">
+                    <h3 class="text-xl font-bold text-cyan-400">🛡️ วิสัยทัศน์องค์กร</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        เป็นผู้นำด้านมาตรฐานความปลอดภัยไซเบอร์ที่ขับเคลื่อนด้วยนวัตกรรมและทีมงานผู้เชี่ยวชาญระดับแนวหน้า
+                    </p>
+                </div>
+                <div class="p-6 rounded-xl bg-slate-900 border border-slate-800 space-y-2">
+                    <h3 class="text-xl font-bold text-cyan-400">⚡ พันธกิจหลัก</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        ตรวจสอบ ป้องกัน และพัฒนาศักยภาพระบบเทคโนโลยีสารสนเทศให้มีความมั่นคงปลอดภัยสูงสุดตลอด 24 ชั่วโมง
+                    </p>
+                </div>
+            </div>
         </div>
 
         <!-- ฝ่ายบริหาร -->
@@ -68,13 +88,11 @@
 
     <script>
         function show(id) {
-            // ซ่อนทุกหน้าก่อน
             const sections = ['home', 'executive', 'about', 'services'];
             sections.forEach(sec => {
                 const el = document.getElementById(sec);
                 if (el) el.classList.add('hidden');
             });
-            // แสดงเฉพาะหน้าที่เลือก
             const target = document.getElementById(id);
             if (target) {
                 target.classList.remove('hidden');
