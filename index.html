@@ -8,97 +8,78 @@
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
     <style>body { font-family: 'Prompt', sans-serif; }</style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col">
-    <!-- Navbar -->
-    <nav class="border-b border-slate-800 bg-slate-900/50 p-4 sticky top-0 z-50">
-        <div class="max-w-5xl mx-auto flex justify-between items-center overflow-x-auto">
+<body class="bg-slate-950 text-slate-100 min-h-screen">
+    <nav class="border-b border-slate-800 bg-slate-900/50 p-4 sticky top-0 z-50 backdrop-blur-sm">
+        <div class="max-w-5xl mx-auto flex justify-between items-center">
             <h1 class="font-bold text-xl uppercase tracking-widest text-cyan-400">TCSN</h1>
-            <div class="space-x-4 text-sm whitespace-nowrap">
-                <button onclick="show('home')" class="hover:text-cyan-400 transition">หน้าแรก</button>
-                <button onclick="show('executive')" class="hover:text-cyan-400 transition">ฝ่ายบริหาร</button>
-                <button onclick="show('about')" class="hover:text-cyan-400 transition">เกี่ยวกับเรา</button>
-                <button onclick="show('services')" class="hover:text-cyan-400 transition">บริการ</button>
+            <div class="space-x-4 text-sm">
+                <button onclick="show('home')" class="hover:text-cyan-400">หน้าแรก</button>
+                <button onclick="show('executive')" class="hover:text-cyan-400">ฝ่ายบริหาร</button>
+                <button onclick="show('about')" class="hover:text-cyan-400">เกี่ยวกับเรา</button>
+                <button onclick="show('services')" class="hover:text-cyan-400">บริการ</button>
             </div>
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <main class="flex-grow max-w-5xl mx-auto p-6 w-full space-y-8">
-        
-        <!-- 1. หน้าแรก -->
+    <main class="max-w-5xl mx-auto p-6 space-y-8">
+        <!-- หน้าแรก: พร้อมส่วนแสดงข่าวภัยคุกคาม -->
         <div id="home" class="space-y-6">
-            <h2 class="text-3xl font-bold uppercase text-cyan-400">ยินดีต้อนรับสู่ TCSN</h2>
-            <div class="bg-slate-900 p-6 rounded-xl border border-slate-800">
-                <p class="text-lg text-slate-300">"มาตรฐานใหม่แห่งความปลอดภัยไซเบอร์" มุ่งเน้นการสร้างเกราะป้องกันข้อมูลเชิงรุกและพัฒนาทักษะบุคลากรในยุคดิจิทัลด้วยมาตรฐานระดับสากล</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="bg-slate-900 p-4 border border-slate-800">
-                    <h3 class="text-cyan-400 font-bold mb-2">เป้าหมายหลัก</h3>
-                    <p class="text-sm text-slate-400">สร้างระบบนิเวศความปลอดภัยที่ยั่งยืน พร้อมรองรับภัยคุกคามรูปแบบใหม่</p>
+            <div class="inline-block bg-cyan-900/30 border border-cyan-500/50 text-cyan-400 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Cyber Threat Updates</div>
+            <h2 class="text-3xl font-bold text-white">ความเคลื่อนไหวภัยคุกคามทางไซเบอร์</h2>
+            <p class="text-slate-400">ติดตามข่าวสารและสถานการณ์สำคัญ เพื่อสนับสนุนการเฝ้าระวังและการเตรียมความพร้อมขององค์กร</p>
+
+            <!-- Card 1 -->
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
+                <div class="p-5 border-b border-slate-800">
+                    <span class="text-xs text-slate-500 font-bold">14 สิงหาคม 2026</span>
+                    <h3 class="text-lg font-bold mt-1">แจ้งเตือนเร่งตรวจสอบและต่ออายุ SSL Certificate</h3>
                 </div>
-                <div class="bg-slate-900 p-4 border border-slate-800">
-                    <h3 class="text-cyan-400 font-bold mb-2">ผลลัพธ์การดำเนินงาน</h3>
-                    <p class="text-sm text-slate-400">ลดความเสี่ยงการรั่วไหลของข้อมูลและเพิ่มประสิทธิภาพการจัดการสินทรัพย์ดิจิทัล</p>
+                <div class="p-5 text-sm text-slate-300 leading-relaxed">
+                    พบความเสี่ยงจาก SSL Certificate ที่หมดอายุ ส่งผลต่อความมั่นคงปลอดภัยและการดักรับข้อมูล องค์กรควรเร่งตรวจสอบและปรับปรุงทันทีเพื่อยกระดับความปลอดภัย
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
+                <div class="p-5 border-b border-slate-800">
+                    <span class="text-xs text-slate-500 font-bold">16 สิงหาคม 2026</span>
+                    <h3 class="text-lg font-bold mt-1">Adobe ออกแพตช์แก้ไขช่องโหว่เร่งด่วน</h3>
+                </div>
+                <div class="p-5 text-sm text-slate-300 leading-relaxed">
+                    แจ้งเตือนอัปเดตแพตช์ความปลอดภัยสำหรับ ColdFusion, Commerce และ Campaign Classic เพื่อป้องกันการถูกโจมตีผ่านช่องโหว่ระดับวิกฤต
                 </div>
             </div>
         </div>
 
-        <!-- 2. ฝ่ายบริหาร -->
-        <div id="executive" class="hidden space-y-4">
+        <!-- ฝ่ายบริหาร (ซ่อนไว้ให้เรียกเปิด) -->
+        <div id="executive" class="hidden space-y-6">
             <h2 class="text-3xl font-bold uppercase text-cyan-400">ฝ่ายบริหาร (Executive Board)</h2>
-            <div class="bg-slate-900 p-8 rounded-xl border border-slate-800">
-                <div class="border-b border-slate-700 pb-4 mb-4">
-                    <p class="text-2xl font-bold text-white">ธัญพิสิษฐ์ (ประธาน)</p>
-                    <p class="text-cyan-400">ประธานบริหารองค์กร (Chief Executive Officer)</p>
-                </div>
-                <p class="text-slate-300">ผู้นำทางยุทธศาสตร์ผู้กำหนดทิศทางความปลอดภัยไซเบอร์ของประเทศ มีประสบการณ์ในด้านการบริหารจัดการระบบความมั่นคงปลอดภัยสารสนเทศและกำกับดูแลองค์กรอย่างเป็นธรรม</p>
+            <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800">
+                <p class="text-xl font-bold text-white">ธัญพิสิษฐ์ (ประธาน)</p>
+                <p class="text-cyan-400">ประธานบริหารองค์กร (CEO)</p>
             </div>
         </div>
 
-        <!-- 3. เกี่ยวกับเรา -->
-        <div id="about" class="hidden space-y-4">
+        <!-- เกี่ยวกับเรา -->
+        <div id="about" class="hidden space-y-6">
             <h2 class="text-3xl font-bold uppercase text-cyan-400">เกี่ยวกับเรา</h2>
-            <div class="bg-slate-900 p-8 rounded-xl border border-slate-800 space-y-6">
-                <p class="text-slate-300">สำนักงานเลขาธิการประธานบริหาร VBM1 ก่อตั้งขึ้นเพื่อเป็นแกนกลางในการสนับสนุนการตัดสินใจเชิงกลยุทธ์ของท่านประธาน ด้วยความมุ่งมั่นในมาตรฐานความเป็นเลิศ 4 ประการ:</p>
-                <div class="space-y-4">
-                    <p><strong>1. การจัดการตารางงาน:</strong> จัดสรรเวลาเชิงกลยุทธ์และจัดลำดับความสำคัญของนัดหมายสำคัญ</p>
-                    <p><strong>2. การสื่อสารระดับสูง:</strong> บริหารจัดการกระแสข้อมูลภายในและภายนอกอย่างแม่นยำ</p>
-                    <p><strong>3. การวิเคราะห์สถานการณ์:</strong> จัดทำรายงานเชิงลึกเพื่อการตัดสินใจที่เฉียบคม</p>
-                    <p><strong>4. การปฏิบัติการพิเศษ:</strong> ตอบสนองโจทย์เร่งด่วนขององค์กรด้วยความรวดเร็วและเป็นมืออาชีพ</p>
-                </div>
+            <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 space-y-4">
+                <p>สำนักงานเลขาธิการประธานบริหาร VBM1 มุ่งมั่นยกระดับมาตรฐานความปลอดภัยไซเบอร์ ด้วยความแม่นยำและเป็นมืออาชีพ</p>
             </div>
         </div>
 
-        <!-- 4. บริการ -->
-        <div id="services" class="hidden space-y-4">
+        <!-- บริการ -->
+        <div id="services" class="hidden space-y-6">
             <h2 class="text-3xl font-bold uppercase text-cyan-400">บริการของเรา</h2>
-            <div class="grid gap-6">
-                <div class="bg-slate-900 p-6 rounded-xl border border-slate-800">
-                    <h3 class="text-xl font-bold text-white mb-2">Cyber Defense Architecture</h3>
-                    <p class="text-slate-400">ออกแบบโครงสร้างพื้นฐานความปลอดภัยระดับสูง ป้องกันการบุกรุกแบบบูรณาการ</p>
-                </div>
-                <div class="bg-slate-900 p-6 rounded-xl border border-slate-800">
-                    <h3 class="text-xl font-bold text-white mb-2">Executive Advisory</h3>
-                    <p class="text-slate-400">ให้คำปรึกษาแก่ผู้บริหารระดับสูงเรื่องความเสี่ยงทางไซเบอร์และการบริหารงานในภาวะวิกฤต</p>
-                </div>
-                <div class="bg-slate-900 p-6 rounded-xl border border-slate-800">
-                    <h3 class="text-xl font-bold text-white mb-2">Audit & Compliance</h3>
-                    <p class="text-slate-400">ตรวจสอบความปลอดภัยและจัดทำระบบรายงานเพื่อให้เป็นไปตามกฎหมายและมาตรฐานสากล</p>
-                </div>
+            <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800">
+                <p>บริการออกแบบโครงสร้างความปลอดภัย, ตรวจสอบช่องโหว่ (Audit), และเป็นที่ปรึกษาเชิงยุทธศาสตร์แก่ผู้บริหาร</p>
             </div>
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="border-t border-slate-800 p-6 text-center text-xs text-slate-600 uppercase tracking-widest">
-        &copy; 2026 Thai Cyber Security Normal. All Rights Reserved.
-    </footer>
-
     <script>
         function show(id) {
-            ['home', 'executive', 'about', 'services'].forEach(sec => {
-                document.getElementById(sec).classList.add('hidden');
-            });
+            ['home', 'executive', 'about', 'services'].forEach(sec => document.getElementById(sec).classList.add('hidden'));
             document.getElementById(id).classList.remove('hidden');
         }
     </script>
