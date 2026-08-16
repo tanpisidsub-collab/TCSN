@@ -9,6 +9,7 @@
     <style>body { font-family: 'Prompt', sans-serif; }</style>
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen">
+    <!-- Navbar -->
     <nav class="border-b border-slate-800 bg-slate-900/50 p-4 sticky top-0 z-50 backdrop-blur-sm">
         <div class="max-w-5xl mx-auto flex justify-between items-center">
             <h1 class="font-bold text-xl uppercase tracking-widest text-cyan-400">TCSN</h1>
@@ -22,56 +23,56 @@
     </nav>
 
     <main class="max-w-5xl mx-auto p-6 space-y-8">
-        <!-- หน้าแรก: พร้อมส่วนแสดงข่าวภัยคุกคาม -->
+        <!-- หน้าแรก: ปรับใหม่ตามความประสงค์ -->
         <div id="home" class="space-y-6">
-            <div class="inline-block bg-cyan-900/30 border border-cyan-500/50 text-cyan-400 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Cyber Threat Updates</div>
-            <h2 class="text-3xl font-bold text-white">ความเคลื่อนไหวภัยคุกคามทางไซเบอร์</h2>
-            <p class="text-slate-400">ติดตามข่าวสารและสถานการณ์สำคัญ เพื่อสนับสนุนการเฝ้าระวังและการเตรียมความพร้อมขององค์กร</p>
-
-            <!-- Card 1 -->
-            <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
-                <div class="p-5 border-b border-slate-800">
-                    <span class="text-xs text-slate-500 font-bold">14 สิงหาคม 2026</span>
-                    <h3 class="text-lg font-bold mt-1">แจ้งเตือนเร่งตรวจสอบและต่ออายุ SSL Certificate</h3>
+            <div class="text-center py-12 space-y-4">
+                <h2 class="text-4xl font-bold text-cyan-400 uppercase tracking-tighter">Thai Cyber Security Normal</h2>
+                <p class="text-slate-400 text-lg">มาตรฐานใหม่ของการปกป้องอนาคตดิจิทัล</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-slate-900 p-8 rounded-2xl border border-slate-800">
+                    <h3 class="text-xl font-bold text-white mb-4">Core Philosophy</h3>
+                    <p class="text-slate-400 leading-relaxed">เราเชื่อว่าความปลอดภัยไซเบอร์ไม่ใช่เพียงแค่เรื่องของเทคโนโลยี แต่คือ "วินัยและมาตรฐานการจัดการ" เราจึงมุ่งมั่นสร้างระเบียบปฏิบัติที่ทำให้โลกดิจิทัลปลอดภัยขึ้นโดยเริ่มจากรากฐานที่มั่นคง</p>
                 </div>
-                <div class="p-5 text-sm text-slate-300 leading-relaxed">
-                    พบความเสี่ยงจาก SSL Certificate ที่หมดอายุ ส่งผลต่อความมั่นคงปลอดภัยและการดักรับข้อมูล องค์กรควรเร่งตรวจสอบและปรับปรุงทันทีเพื่อยกระดับความปลอดภัย
+                <div class="bg-slate-900 p-8 rounded-2xl border border-slate-800">
+                    <h3 class="text-xl font-bold text-white mb-4">Our Vision</h3>
+                    <p class="text-slate-400 leading-relaxed">มุ่งสู่การเป็นองค์กรอ้างอิงด้านความปลอดภัยที่ขับเคลื่อนด้วยความฉับไวและข้อมูลที่แม่นยำ เพื่อให้ทุกการก้าวเดินในโลกไซเบอร์ขององค์กรท่านปราศจากความกังวล</p>
                 </div>
             </div>
 
-            <!-- Card 2 -->
-            <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
-                <div class="p-5 border-b border-slate-800">
-                    <span class="text-xs text-slate-500 font-bold">16 สิงหาคม 2026</span>
-                    <h3 class="text-lg font-bold mt-1">Adobe ออกแพตช์แก้ไขช่องโหว่เร่งด่วน</h3>
-                </div>
-                <div class="p-5 text-sm text-slate-300 leading-relaxed">
-                    แจ้งเตือนอัปเดตแพตช์ความปลอดภัยสำหรับ ColdFusion, Commerce และ Campaign Classic เพื่อป้องกันการถูกโจมตีผ่านช่องโหว่ระดับวิกฤต
-                </div>
+            <div class="bg-amber-900/10 border border-amber-900/30 p-6 rounded-2xl text-center">
+                <p class="text-amber-500 font-medium">หมายเหตุ: TCSN เป็นองค์กรอิสระที่ดำเนินงานด้วยมาตรฐานสากล เราไม่ใช่หน่วยงานราชการหรือองค์กรภายใต้การกำกับดูแลของรัฐ</p>
             </div>
         </div>
 
-        <!-- ฝ่ายบริหาร (ซ่อนไว้ให้เรียกเปิด) -->
+        <!-- ฝ่ายบริหาร -->
         <div id="executive" class="hidden space-y-6">
             <h2 class="text-3xl font-bold uppercase text-cyan-400">ฝ่ายบริหาร (Executive Board)</h2>
             <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800">
                 <p class="text-xl font-bold text-white">ธัญพิสิษฐ์ (ประธาน)</p>
-                <p class="text-cyan-400">ประธานบริหารองค์กร (CEO)</p>
+                <p class="text-cyan-400 font-medium">ประธานบริหารองค์กร (CEO)</p>
             </div>
         </div>
 
         <!-- เกี่ยวกับเรา -->
         <div id="about" class="hidden space-y-6">
             <h2 class="text-3xl font-bold uppercase text-cyan-400">เกี่ยวกับเรา</h2>
-            <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 space-y-4">
-                <p>สำนักงานเลขาธิการประธานบริหาร VBM1 มุ่งมั่นยกระดับมาตรฐานความปลอดภัยไซเบอร์ ด้วยความแม่นยำและเป็นมืออาชีพ</p>
+            <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 space-y-4 text-slate-300">
+                <p>สำนักงานเลขาธิการประธานบริหาร VBM1 มุ่งเน้นการสนับสนุนเชิงกลยุทธ์ด้วยความแม่นยำและเป็นมืออาชีพ</p>
+                <ul class="list-disc ml-5 space-y-2 text-sm">
+                    <li><strong>จัดการตารางงาน:</strong> จัดลำดับความสำคัญและควบคุมเวลาเชิงกลยุทธ์</li>
+                    <li><strong>สื่อสารระดับสูง:</strong> บริหารจัดการกระแสข้อมูลทั้งภายในและภายนอก</li>
+                    <li><strong>วิเคราะห์สถานการณ์:</strong> จัดทำรายงานเชิงลึกเพื่อการตัดสินใจ</li>
+                    <li><strong>ปฏิบัติการพิเศษ:</strong> ตอบสนองโจทย์เร่งด่วนด้วยความรวดเร็ว</li>
+                </ul>
             </div>
         </div>
 
         <!-- บริการ -->
         <div id="services" class="hidden space-y-6">
             <h2 class="text-3xl font-bold uppercase text-cyan-400">บริการของเรา</h2>
-            <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800">
+            <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 text-slate-300">
                 <p>บริการออกแบบโครงสร้างความปลอดภัย, ตรวจสอบช่องโหว่ (Audit), และเป็นที่ปรึกษาเชิงยุทธศาสตร์แก่ผู้บริหาร</p>
             </div>
         </div>
