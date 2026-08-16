@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
     <style>body { font-family: 'Prompt', sans-serif; }</style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen">
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col">
     <!-- Navbar -->
     <nav class="border-b border-slate-800 bg-slate-900/50 p-4 sticky top-0 z-50 backdrop-blur-sm">
         <div class="max-w-5xl mx-auto flex justify-between items-center">
@@ -22,27 +22,52 @@
         </div>
     </nav>
 
-    <main class="max-w-5xl mx-auto p-6 space-y-8">
-        <!-- หน้าแรก: ปรับใหม่ตามความประสงค์ -->
+    <!-- Main Content -->
+    <main class="max-w-5xl mx-auto p-6 space-y-8 flex-grow w-full">
+        <!-- หน้าแรก (จัดเต็มเนื้อหาแน่นๆ) -->
         <div id="home" class="space-y-6">
-            <div class="text-center py-12 space-y-4">
-                <h2 class="text-4xl font-bold text-cyan-400 uppercase tracking-tighter">Thai Cyber Security Normal</h2>
-                <p class="text-slate-400 text-lg">มาตรฐานใหม่ของการปกป้องอนาคตดิจิทัล</p>
+            <div class="text-center py-8 space-y-3 bg-gradient-to-b from-slate-900 to-slate-950 p-8 rounded-2xl border border-slate-800">
+                <h2 class="text-3xl md:text-4xl font-bold text-cyan-400 uppercase tracking-wider">Thai Cyber Security Normal</h2>
+                <p class="text-slate-300 text-lg">มาตรฐานใหม่ของการปกป้องอนาคตดิจิทัล ขับเคลื่อนด้วยยุทธศาสตร์และความแม่นยำขั้นสูง</p>
             </div>
             
             <div class="grid md:grid-cols-2 gap-6">
-                <div class="bg-slate-900 p-8 rounded-2xl border border-slate-800">
-                    <h3 class="text-xl font-bold text-white mb-4">Core Philosophy</h3>
-                    <p class="text-slate-400 leading-relaxed">เราเชื่อว่าความปลอดภัยไซเบอร์ไม่ใช่เพียงแค่เรื่องของเทคโนโลยี แต่คือ "วินัยและมาตรฐานการจัดการ" เราจึงมุ่งมั่นสร้างระเบียบปฏิบัติที่ทำให้โลกดิจิทัลปลอดภัยขึ้นโดยเริ่มจากรากฐานที่มั่นคง</p>
+                <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 space-y-3">
+                    <h3 class="text-xl font-bold text-cyan-400">🛡️ Core Philosophy</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        เราเชื่อว่าความปลอดภัยไซเบอร์ไม่ใช่เพียงแค่เรื่องของเทคโนโลยี แต่คือ "วินัยและมาตรฐานการจัดการ" เราจึงมุ่งมั่นสร้างระเบียบปฏิบัติที่ทำให้โลกดิจิทัลปลอดภัยขึ้นโดยเริ่มจากรากฐานที่มั่นคง
+                    </p>
                 </div>
-                <div class="bg-slate-900 p-8 rounded-2xl border border-slate-800">
-                    <h3 class="text-xl font-bold text-white mb-4">Our Vision</h3>
-                    <p class="text-slate-400 leading-relaxed">มุ่งสู่การเป็นองค์กรอ้างอิงด้านความปลอดภัยที่ขับเคลื่อนด้วยความฉับไวและข้อมูลที่แม่นยำ เพื่อให้ทุกการก้าวเดินในโลกไซเบอร์ขององค์กรท่านปราศจากความกังวล</p>
+                <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 space-y-3">
+                    <h3 class="text-xl font-bold text-cyan-400">⚡ Our Vision</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        มุ่งสู่การเป็นองค์กรอ้างอิงด้านความปลอดภัยที่ขับเคลื่อนด้วยความฉับไวและข้อมูลที่แม่นยำ เพื่อให้ทุกการก้าวเดินในโลกไซเบอร์ขององค์กรท่านปราศจากความกังวล
+                    </p>
                 </div>
             </div>
 
-            <div class="bg-amber-900/10 border border-amber-900/30 p-6 rounded-2xl text-center">
-                <p class="text-amber-500 font-medium">หมายเหตุ: TCSN เป็นองค์กรอิสระที่ดำเนินงานด้วยมาตรฐานสากล เราไม่ใช่หน่วยงานราชการหรือองค์กรภายใต้การกำกับดูแลของรัฐ</p>
+            <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 space-y-4">
+                <h3 class="text-xl font-bold text-cyan-400">📊 ยุทธศาสตร์การดำเนินงานหลัก</h3>
+                <div class="grid md:grid-cols-3 gap-4 text-sm text-slate-300">
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+                        <strong class="text-white block mb-1">1. Proactive Defense</strong>
+                        การเฝ้าระวังและประเมินความเสี่ยงเชิงรุก ก่อนที่ปัญหาจะส่งผลกระทบต่อระบบ
+                    </div>
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+                        <strong class="text-white block mb-1">2. Strategic Standard</strong>
+                        การยกระดับมาตรฐานการบริหารจัดการข้อมูลให้สอดคล้องกับความท้าทายยุคใหม่
+                    </div>
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80">
+                        <strong class="text-white block mb-1">3. Executive Agility</strong>
+                        ความคล่องตัวและการตัดสินใจที่เฉียบคมภายใต้การนำของฝ่ายบริหาร
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-amber-950/20 border border-amber-500/30 p-5 rounded-2xl text-center">
+                <p class="text-amber-400 text-sm font-medium">
+                    <strong>ประกาศสำคัญ:</strong> TCSN เป็นองค์กรอิสระที่ดำเนินงานด้วยมาตรฐานสากล เราไม่ใช่หน่วยงานราชการหรือองค์กรภายใต้การกำกับดูแลของรัฐ
+                </p>
             </div>
         </div>
 
@@ -77,6 +102,11 @@
             </div>
         </div>
     </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 p-6 text-center text-xs text-slate-600 uppercase tracking-widest">
+        &copy; 2026 Thai Cyber Security Normal. All Rights Reserved.
+    </footer>
 
     <script>
         function show(id) {
