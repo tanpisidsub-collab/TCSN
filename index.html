@@ -2,39 +2,109 @@
 <html lang="th">
 <head>
     <meta charset="UTF-8">
-    <title>TCSN Executive Command Hub</title>
+    <title>TCSN Enterprise Command Hub - Full Suite with Email</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        :root { --bg: #070a10; --card: #111827; --accent: #00e5ff; --text: #f3f4f6; }
-        body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; padding: 20px; }
-        .container { max-width: 1200px; margin: auto; }
-        .command-section { background: var(--card); padding: 25px; border-radius: 12px; border: 1px solid #374151; margin-bottom: 20px; }
-        textarea { width: 100%; height: 80px; background: #030712; color: var(--accent); border: 1px solid #374151; padding: 15px; border-radius: 8px; font-size: 16px; margin-bottom: 10px; }
-        .btn-exec { background: var(--accent); color: #000; border: none; padding: 12px 25px; border-radius: 6px; font-weight: bold; cursor: pointer; }
-        .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .panel { background: var(--card); padding: 20px; border-radius: 10px; border: 1px solid #374151; }
-        h2 { font-size: 16px; color: var(--accent); margin-bottom: 15px; }
-        .log { background: #000; padding: 10px; font-family: monospace; font-size: 13px; color: #10b981; height: 150px; overflow-y: auto; border-radius: 6px; }
+        :root { --bg: #070a10; --card: #111827; --accent: #00e5ff; --text: #f3f4f6; --border: #1f2937; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+        body { background: var(--bg); color: var(--text); padding: 20px; }
+        .container { max-width: 1600px; margin: auto; }
+        header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; border-bottom: 1px solid var(--border); padding-bottom: 15px; }
+        header h1 { color: var(--accent); font-size: 22px; display: flex; align-items: center; gap: 10px; }
+        .status-badge { background: rgba(0, 229, 255, 0.1); border: 1px solid var(--accent); color: var(--accent); padding: 5px 12px; border-radius: 20px; font-size: 13px; font-weight: bold; }
+        
+        .command-section { background: var(--card); padding: 20px; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 25px; }
+        .command-row { display: grid; grid-template-columns: 2fr 1fr; gap: 15px; }
+        @media(max-width: 768px) { .command-row { grid-template-columns: 1fr; } }
+        textarea, input { width: 100%; background: #030712; color: var(--accent); border: 1px solid var(--border); padding: 12px; border-radius: 8px; font-size: 14px; margin-bottom: 10px; }
+        textarea { height: 70px; resize: none; }
+        .btn-exec { background: var(--accent); color: #000; border: none; padding: 10px 20px; border-radius: 6px; font-weight: bold; cursor: pointer; height: 45px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .btn-email { background: #3b82f6; color: #fff; border: none; padding: 10px 20px; border-radius: 6px; font-weight: bold; cursor: pointer; height: 45px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        
+        .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-bottom: 25px; }
+        .panel { background: var(--card); padding: 20px; border-radius: 10px; border: 1px solid var(--border); }
+        .panel h2 { font-size: 16px; color: #e5e7eb; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+        .item-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px dashed rgba(255,255,255,0.05); font-size: 13px; color: #9ca3af; }
+        .item-row strong { color: var(--text); }
+        .log { background: #030712; padding: 10px; font-family: monospace; font-size: 12px; color: #10b981; height: 110px; overflow-y: auto; border-radius: 6px; margin-top: 10px; }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- ระบบสั่งการอัจฉริยะ -->
+        <header>
+            <h1><i class="fa-solid fa-shield-halved"></i> TCSN Enterprise Core + Email Suite</h1>
+            <div class="status-badge"><i class="fa-solid fa-circle-nodes"></i> SYSTEMS & EMAIL GATEWAY ONLINE</div>
+        </header>
+
+        <!-- Command & Email Prompt Section -->
         <div class="command-section">
-            <h2><i class="fa-solid fa-terminal"></i> พิมพ์คำสั่งสั่งการ (Universal Command Prompt)</h2>
-            <textarea id="commandInput" placeholder="ตัวอย่าง: CDC ตรวจสอบสถานะความปลอดภัยล่าสุด หรือ ทุกศูนย์ รายงานสรุปภารกิจ 10 นาที"></textarea>
-            <button class="btn-exec" onclick="processCommand()"><i class="fa-solid fa-paper-plane"></i> ส่งคำสั่งไปยังหน่วยงาน</button>
+            <h2><i class="fa-solid fa-terminal"></i> ระบบสั่งการและส่งอีเมลกลาง (Command & Email Gateway)</h2>
+            <div class="command-row">
+                <div>
+                    <textarea id="commandInput" placeholder="พิมพ์คำสั่งระบุหน่วยงาน หรือข้อความที่ต้องการสั่งการ..."></textarea>
+                    <button class="btn-exec" onclick="processCommand()"><i class="fa-solid fa-paper-plane"></i> ส่งคำสั่งเข้าระบบกลาง</button>
+                </div>
+                <div>
+                    <input type="email" id="emailRecipient" placeholder="ระบุอีเมลผู้รับ (เช่น executive@tcsn.internal)">
+                    <button class="btn-email" onclick="sendEmailAction()"><i class="fa-solid fa-envelope-circle-check"></i> ร่างและส่งอีเมลด่วน</button>
+                </div>
+            </div>
         </div>
 
-        <!-- หน้าต่างติดตามสถานะ -->
+        <!-- 10 Modules Grid -->
         <div class="dashboard-grid">
             <div class="panel">
-                <h2><i class="fa-solid fa-list-check"></i> ภารกิจที่กำลังดำเนินการ</h2>
-                <div id="taskList" style="font-size: 14px;">- ยังไม่มีภารกิจค้าง</div>
+                <h2><i class="fa-solid fa-triangle-exclamation"></i> 1. ระบบบริหารความเสี่ยง (ERM)</h2>
+                <div class="item-row"><span>ระดับความเสี่ยงรวม</span><strong style="color:#22c55e">ต่ำ (Low Risk)</strong></div>
+                <div class="item-row"><span>จุดเฝ้าระวังภัยคุกคาม</span><strong>0 จุด</strong></div>
             </div>
             <div class="panel">
-                <h2><i class="fa-solid fa-clock-rotate-left"></i> ประวัติการสั่งการ (Logs)</h2>
-                <div class="log" id="logBox">[System] Ready to serve, Commander.</div>
+                <h2><i class="fa-solid fa-users-gear"></i> 2. บริหาร HR & Payroll</h2>
+                <div class="item-row"><span>กำลังพลปฏิบัติงานเวร</span><strong>142 นาย</strong></div>
+                <div class="item-row"><span>สถานะเบิกจ่ายค่าตอบแทน</span><strong style="color:#22c55e">ปกติ</strong></div>
+            </div>
+            <div class="panel">
+                <h2><i class="fa-solid fa-file-signature"></i> 3. ระบบอนุมัติเอกสาร (E-Approval)</h2>
+                <div class="item-row"><span>รอการลงนามคำสั่ง</span><strong style="color:#f59e0b">2 ฉบับ</strong></div>
+                <div class="item-row"><span>อนุมัติแล้ววันนี้</span><strong>15 ฉบับ</strong></div>
+            </div>
+            <div class="panel">
+                <h2><i class="fa-solid fa-wallet"></i> 4. การเงินและงบประมาณ</h2>
+                <div class="item-row"><span>งบฉุกเฉินคงเหลือ</span><strong style="color:var(--accent)">85.4%</strong></div>
+                <div class="item-row"><span>สถานะกระแสเงินสด</span><strong>มั่นคง</strong></div>
+            </div>
+            <div class="panel">
+                <h2><i class="fa-solid fa-boxes-stacked"></i> 5. คลังพัสดุและทรัพย์สิน</h2>
+                <div class="item-row"><span>อุปกรณ์สำรองพร้อมใช้</span><strong>98%</strong></div>
+                <div class="item-row"><span>สถานะการเบิกจ่าย</span><strong>ปกติ</strong></div>
+            </div>
+            <div class="panel">
+                <h2><i class="fa-solid fa-bullhorn"></i> 6. ประกาศภายในองค์กร</h2>
+                <div class="item-row"><span>ประกาศล่าสุด</span><strong>มาตรการ Red Alert</strong></div>
+                <div class="item-row"><span>สถานะการรับทราบ</span><strong>100%</strong></div>
+            </div>
+            <div class="panel">
+                <h2><i class="fa-solid fa-diagram-project"></i> 7. ติดตามโครงการ (Projects)</h2>
+                <div class="item-row"><span>โปรเจกต์กำลังดำเนินการ</span><strong>4 โครงการ</strong></div>
+                <div class="item-row"><span>ตรงตามกำหนดเวลา</span><strong style="color:#22c55e">100%</strong></div>
+            </div>
+            <div class="panel">
+                <h2><i class="fa-solid fa-headset"></i> 8. ศูนย์ช่วยเหลือไอที (Helpdesk)</h2>
+                <div class="item-row"><span>เคสแจ้งปัญหาค้างอยู่</span><strong style="color:#22c55e">0 เคส</strong></div>
+                <div class="item-row"><span>เวลาตอบสนองเฉลี่ย</span><strong>< 2 นาที</strong></div>
+            </div>
+            <div class="panel">
+                <h2><i class="fa-solid fa-scale-balanced"></i> 9. กฎหมายและข้อบังคับ</h2>
+                <div class="item-row"><span>สถานะความถูกต้องกฎหมาย</span><strong style="color:#22c55e">100% Compliant</strong></div>
+                <div class="item-row"><span>สัญญาที่ต้องต่ออายุใน 30 วัน</span><strong>0 ฉบับ</strong></div>
+            </div>
+            <div class="panel">
+                <h2><i class="fa-solid fa-chart-line"></i> 10. BI Analytics & Email Logs</h2>
+                <div class="item-row"><span>สถานะเกตเวย์อีเมล</span><strong style="color:var(--accent)">Secure Gateway Active</strong></div>
+                <div class="log" id="logBox">
+                    [System] Enterprise Suite & Email Gateway loaded.<br>
+                    [Security] Ready for Executive Commands.
+                </div>
             </div>
         </div>
     </div>
@@ -43,19 +113,29 @@
         function processCommand() {
             const input = document.getElementById('commandInput').value;
             const logBox = document.getElementById('logBox');
-            const taskList = document.getElementById('taskList');
             const timestamp = new Date().toLocaleTimeString();
 
             if (!input) return alert("โปรดระบุคำสั่งครับท่านประธาน");
 
-            // อัปเดต Log
-            logBox.innerHTML += `<br>[${timestamp}] Executing: ${input}`;
+            logBox.innerHTML += `<br>[${timestamp}] <span style="color:#00e5ff">COMMAND:</span> ${input}`;
+            logBox.scrollTop = logBox.scrollHeight;
             
-            // อัปเดต Task List
-            taskList.innerHTML = `<div><i class="fa-solid fa-spinner fa-spin"></i> ${input}</div>`;
-            
-            alert("คำสั่งถูกกระจายไปยังหน่วยงานที่เกี่ยวข้องเรียบร้อยแล้วครับท่านประธาน!");
+            alert("คำสั่งถูกกระจายไปยังระบบบริหารจัดการเรียบร้อยแล้วครับท่านประธาน!");
             document.getElementById('commandInput').value = '';
+        }
+
+        function sendEmailAction() {
+            const recipient = document.getElementById('emailRecipient').value;
+            const logBox = document.getElementById('logBox');
+            const timestamp = new Date().toLocaleTimeString();
+
+            if (!recipient) return alert("โปรดระบุอีเมลผู้รับครับท่านประธาน");
+
+            logBox.innerHTML += `<br>[${timestamp}] <span style="color:#3b82f6">EMAIL SENT:</span> Dispatched to ${recipient}`;
+            logBox.scrollTop = logBox.scrollHeight;
+            
+            alert(`ร่างและส่งอีเมลไปยัง ${recipient} เรียบร้อยแล้วครับท่านประธาน!`);
+            document.getElementById('emailRecipient').value = '';
         }
     </script>
 </body>
