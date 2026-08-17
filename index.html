@@ -3,43 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TCSN Unified Command Portal</title>
+    <title>TCSN Enterprise Command & Management Portal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
-            --bg-color: #0b0f19;
-            --card-bg: #131b2e;
+            --bg-color: #070a10;
+            --card-bg: #111827;
             --accent-cyan: #00e5ff;
-            --accent-blue: #2563eb;
-            --text-main: #f1f5f9;
-            --text-muted: #94a3b8;
-            --border-color: #1e293b;
+            --accent-blue: #3b82f6;
+            --accent-green: #22c55e;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border-color: #1f2937;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: var(--bg-color); color: var(--text-main); padding: 20px; }
-        .portal-container { max-width: 1400px; margin: 0 auto; }
-        header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; }
-        header h1 { color: var(--accent-cyan); font-size: 24px; display: flex; align-items: center; gap: 10px; }
-        .status-badge { background: rgba(0, 229, 255, 0.1); border: 1px solid var(--accent-cyan); color: var(--accent-cyan); padding: 5px 12px; border-radius: 20px; font-size: 14px; font-weight: bold; }
+        .portal-container { max-width: 1600px; margin: 0 auto; }
         
-        /* Grid Layout for Unified Menu */
-        .grid-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-bottom: 30px; }
-        .panel { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 25px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
-        .panel h2 { font-size: 18px; margin-bottom: 15px; color: #cbd5e1; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
+        header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; }
+        header h1 { color: var(--accent-cyan); font-size: 22px; display: flex; align-items: center; gap: 10px; }
+        .status-badge { background: rgba(0, 229, 255, 0.1); border: 1px solid var(--accent-cyan); color: var(--accent-cyan); padding: 5px 12px; border-radius: 20px; font-size: 13px; font-weight: bold; }
         
-        /* List & Items */
-        .center-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px dashed rgba(255,255,255,0.05); }
-        .center-item:last-child { border-bottom: none; }
-        .center-name { font-weight: 600; color: #e2e8f0; font-size: 15px; }
-        .indicator { width: 10px; height: 10px; border-radius: 50%; background-color: #22c55e; box-shadow: 0 0 8px #22c55e; }
+        /* Dashboard Grid Layout */
+        .grid-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; margin-bottom: 25px; }
+        .panel { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; padding: 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.4); }
+        .panel h2 { font-size: 17px; margin-bottom: 15px; color: #e5e7eb; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
         
-        /* Coordination Control Panel */
-        .control-panel { background: linear-gradient(135deg, #131b2e 0%, #1e293b 100%); }
-        .btn-sync { background: var(--accent-cyan); color: #0b0f19; border: none; padding: 12px 20px; border-radius: 6px; font-weight: bold; cursor: pointer; width: 100%; font-size: 16px; transition: 0.2s; display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 15px; }
-        .btn-sync:hover { background: #00b4d8; box-shadow: 0 0 15px rgba(0,229,255,0.4); }
+        /* Items & Lists */
+        .item-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px dashed rgba(255,255,255,0.05); font-size: 14px; }
+        .item-row:last-child { border-bottom: none; }
+        .indicator { width: 8px; height: 8px; border-radius: 50%; background-color: var(--accent-green); box-shadow: 0 0 6px var(--accent-green); }
         
-        /* Log Box */
-        .log-box { background: #070a10; border: 1px solid var(--border-color); border-radius: 6px; padding: 12px; height: 120px; overflow-y: auto; font-family: 'Courier New', Courier, monospace; font-size: 13px; color: #38bdf8; margin-top: 15px; }
+        /* Buttons & Controls */
+        .btn-action { background: var(--accent-cyan); color: #000; border: none; padding: 10px 15px; border-radius: 6px; font-weight: bold; cursor: pointer; width: 100%; font-size: 14px; transition: 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 12px; }
+        .btn-action:hover { background: #00b4d8; box-shadow: 0 0 12px rgba(0,229,255,0.4); }
+        
+        .btn-secondary { background: var(--accent-blue); color: #fff; }
+        .btn-secondary:hover { background: #2563eb; }
+
+        /* Log Console */
+        .log-box { background: #030712; border: 1px solid var(--border-color); border-radius: 6px; padding: 10px; height: 110px; overflow-y: auto; font-family: 'Courier New', Courier, monospace; font-size: 12px; color: #38bdf8; margin-top: 10px; }
     </style>
 </head>
 <body>
@@ -47,48 +50,67 @@
     <div class="portal-container">
         <!-- Header -->
         <header>
-            <h1><i class="fa-solid fa-shield-halved"></i> TCSN Command Portal (Unified Core)</h1>
-            <div class="status-badge"><i class="fa-solid fa-circle-waveform-lines"></i> SYSTEM STATUS: RED ALERT ACTIVE</div>
+            <h1><i class="fa-solid fa-shield-halved"></i> TCSN Enterprise Command & Management Suite</h1>
+            <div class="status-badge"><i class="fa-solid fa-circle-nodes"></i> ALL SYSTEMS ONLINE & SYNCED</div>
         </header>
 
-        <!-- Main Dashboard Grid -->
+        <!-- Grid Container for All Operational & Management Systems -->
         <div class="grid-layout">
             
-            <!-- Original Core Systems (ระบบเดิมคงไว้ครบถ้วน) -->
+            <!-- 1. ศูนย์ปฏิบัติการเดิม (Original Operational Core) -->
             <div class="panel">
-                <h2><i class="fa-solid fa-server"></i> โครงสร้างศูนย์ปฏิบัติการเดิม</h2>
-                <div class="center-item">
-                    <span class="center-name">ศูนย์ป้องกันไซเบอร์ (CDC)</span>
-                    <span class="indicator"></span>
-                </div>
-                <div class="center-item">
-                    <span class="center-name">ศูนย์โครงสร้างพื้นฐาน (IOC)</span>
-                    <span class="indicator"></span>
-                </div>
-                <div class="center-item">
-                    <span class="center-name">ศูนย์สนับสนุนยุทธศาสตร์</span>
-                    <span class="indicator"></span>
-                </div>
+                <h2><i class="fa-solid fa-server"></i> ศูนย์ปฏิบัติการแกนหลัก (Nodes)</h2>
+                <div class="item-row"><span>ศูนย์ป้องกันไซเบอร์ (CDC)</span><span class="indicator"></span></div>
+                <div class="item-row"><span>ศูนย์โครงสร้างพื้นฐาน (IOC)</span><span class="indicator"></span></div>
+                <div class="item-row"><span>ศูนย์สนับสนุนยุทธศาสตร์</span><span class="indicator"></span></div>
             </div>
 
-            <!-- Newly Added Coordination System (ระบบประสานงานที่เพิ่มเข้ามาใหม่) -->
-            <div class="panel control-panel">
-                <h2><i class="fa-solid fa-network-wired"></i> ระบบประสานงานส่วนกลาง (Coordination)</h2>
-                <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 15px;">
-                    ซิงค์ข้อมูลคำสั่งและเชื่อมโยงการปฏิบัติการระหว่างหน่วยงานเดิมและภาคีเครือข่ายแบบเรียลไทม์
-                </p>
-                <button class="btn-sync" onclick="executeSyncCoordination()">
-                    <i class="fa-solid fa-rotate"></i> SYNC ทุกศูนย์ประสานงานทันที
+            <!-- 2. ระบบประสานงานส่วนกลาง (Coordination & Sync) -->
+            <div class="panel">
+                <h2><i class="fa-solid fa-network-wired"></i> ระบบประสานงานและสั่งการด่วน</h2>
+                <p style="color: var(--text-muted); font-size: 13px; margin-bottom: 10px;">ซิงค์คำสั่งและกระจายประกาศสถานะไปยังภาคีเครือข่ายทั้งหมดทันที</p>
+                <button class="btn-action" onclick="executeSystemAction('SYNC_ALL', 'ส่งคำสั่งประสานงานไปยังทุกศูนย์สำเร็จ')">
+                    <i class="fa-solid fa-rotate"></i> SYNC ทุกศูนย์ปฏิบัติการ
                 </button>
             </div>
 
-            <!-- Live Status & Activity Logs -->
+            <!-- 3. ระบบบริหารทรัพยากรบุคคล (HR & Access Management) -->
             <div class="panel">
-                <h2><i class="fa-solid fa-terminal"></i> บันทึกเหตุการณ์ (Activity Logs)</h2>
+                <h2><i class="fa-solid fa-users-gear"></i> บริหารบุคลากรและสิทธิ์ (HR)</h2>
+                <div class="item-row"><span>เจ้าหน้าที่ปฏิบัติการเวร (24/7)</span><strong>142 นาย</strong></div>
+                <div class="item-row"><span>สิทธิ์การเข้าถึงระดับสูงสุด (Level-5)</span><strong>8 ท่าน</strong></div>
+                <button class="btn-action btn-secondary" onclick="executeSystemAction('HR_AUDIT', 'ตรวจสอบสถานะและสิทธิ์การเข้าถึงเรียบร้อย')">
+                    <i class="fa-solid fa-user-shield"></i> ตรวจสอบสิทธิ์และอัตรากำลัง
+                </button>
+            </div>
+
+            <!-- 4. ระบบบริหารงบประมาณและทรัพยากร (Budget & Finance) -->
+            <div class="panel">
+                <h2><i class="fa-solid fa-wallet"></i> บริหารงบประมาณและคลังพัสดุ</h2>
+                <div class="item-row"><span>งบประมาณฉุกเฉินคงเหลือ</span><strong style="color:var(--accent-green)">85.4%</strong></div>
+                <div class="item-row"><span>สถานะคลังอุปกรณ์สำรอง</span><strong>ปกติ (Stable)</strong></div>
+                <button class="btn-action btn-secondary" onclick="executeSystemAction('BUDGET_CHECK', 'ดึงรายงานสถานใช้งบประมาณเรียบร้อย')">
+                    <i class="fa-solid fa-chart-pie"></i> รายงานงบประมาณองค์กร
+                </button>
+            </div>
+
+            <!-- 5. ระบบบริหารความต่อเนื่องและ Incident Tracking -->
+            <div class="panel">
+                <h2><i class="fa-solid fa-clipboard-list"></i> ระบบจัดการเคสฉุกเฉิน (Incidents)</h2>
+                <div class="item-row"><span>เคสที่กำลังดำเนินการ (Active)</span><strong style="color:#f59e0b">0 เคส</strong></div>
+                <div class="item-row"><span>เคสที่ปิดแล้ววันนี้ (Resolved)</span><strong>12 เคส</strong></div>
+                <button class="btn-action btn-secondary" onclick="executeSystemAction('INCIDENT_REFRESH', 'รีเฟรชฐานข้อมูลเคสฉุกเฉินสำเร็จ')">
+                    <i class="fa-solid fa-rotate-right"></i> รีเฟรชสถานะเคสทั้งหมด
+                </button>
+            </div>
+
+            <!-- 6. ระบบบันทึกเหตุการณ์และคอนโซล (Audit Logs) -->
+            <div class="panel">
+                <h2><i class="fa-solid fa-terminal"></i> คอนโซลบันทึกคำสั่ง (Audit Trail)</h2>
                 <div class="log-box" id="logContainer">
-                    [System] Initialized Unified Portal v2.5<br>
-                    [Security] Red Alert Protocol loaded successfully.<br>
-                    [Ready] Waiting for Commander command...
+                    [System] Enterprise Suite v3.0 Initialized.<br>
+                    [Security] All modules integrated successfully.<br>
+                    [Ready] Awaiting Executive Command...
                 </div>
             </div>
 
@@ -96,16 +118,16 @@
     </div>
 
     <script>
-        function executeSyncCoordination() {
+        function executeSystemAction(actionType, message) {
             const logContainer = document.getElementById('logContainer');
             const timestamp = new Date().toLocaleTimeString();
             
-            // แสดงผลการซิงค์ใน Log Box
-            logContainer.innerHTML += `<br>[${timestamp}] <span style="color:#22c55e">SUCCESS:</span> ส่งคำสั่งประสานงานและยกระดับความปลอดภัยไปยังทุกศูนย์สำเร็จ!`;
+            logContainer.innerHTML += `<br>[${timestamp}] <span style="color:#22c55e">ACTION (${actionType}):</span> ${message}`;
             logContainer.scrollTop = logContainer.scrollHeight;
             
-            alert('คำสั่งประสานงานและซิงค์ระบบถูกส่งไปยังทุกศูนย์เรียบร้อยแล้วครับท่านประธาน!');
+            alert(`[TCSN Command]: ${message} เรียบร้อยครับท่านประธาน!`);
         }
     </script>
 </body>
 </html>
+
