@@ -327,24 +327,20 @@
         </div>
 
     </div>
-        <!-- 21. Global Network & Infrastructure -->
-        <div style="background-color: #1a2234; border: 1px solid #2d3748; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                <h3 style="color: #60a5fa; margin: 0; font-size: 1.1rem;">🌐 21. Global Network & Infrastructure</h3>
-                <span style="color: #34d399; font-size: 0.9rem;">Stable (100%)</span>
-            </div>
-            <p style="color: #94a3b8; margin: 0 0 1rem 0; font-size: 0.9rem;">เครือข่ายเซิร์ฟเวอร์หลักและระบบคลาวด์ทั่วโลก</p>
-            <button style="background-color: #06b6d4; color: #ffffff; border: none; padding: 0.6rem 1.2rem; border-radius: 4px; font-weight: bold; cursor: pointer; width: 100%;">ตรวจสอบสถานะเซิร์ฟเวอร์</button>
+            <!-- 21. Global Network & Infrastructure -->
+        <div class="panel">
+            <h2><i class="fa-solid fa-globe"></i> 21. Global Network & Infrastructure</h2>
+            <div class="item-row"><span>สถานะเครือข่าย</span><strong style="color:var(--success)">Stable (100%)</strong></div>
+            <div class="item-row"><span>เซิร์ฟเวอร์หลัก (Cloud Core)</span><strong style="color:var(--success)">Normal</strong></div>
+            <button class="btn-exec" onclick="executeSystem(21, 'ตรวจสอบสถานะเซิร์ฟเวอร์', 'ผลการตรวจสอบ: เครือข่ายเซิร์ฟเวอร์หลักทั่วโลกและระบบคลาวด์ทำงานปกติ ความหน่วงต่ำ 14ms ไม่พบข้อผิดพลาด')">ตรวจสอบสถานะเซิร์ฟเวอร์</button>
         </div>
 
         <!-- 22. AI Executive Assistant Core -->
-        <div style="background-color: #1a2234; border: 1px solid #2d3748; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                <h3 style="color: #60a5fa; margin: 0; font-size: 1.1rem;">🤖 22. AI Executive Assistant Core</h3>
-                <span style="color: #34d399; font-size: 0.9rem;">Online (Active)</span>
-            </div>
-            <p style="color: #94a3b8; margin: 0 0 1rem 0; font-size: 0.9rem;">ระบบสมองกลเลขาส่วนตัวและระบบประมวลผลคำสั่งอัตโนมัติ</p>
-            <button style="background-color: #8b5cf6; color: #ffffff; border: none; padding: 0.6rem 1.2rem; border-radius: 4px; font-weight: bold; cursor: pointer; width: 100%;">ตั้งค่าระบบเลขาอัจฉริยะ</button>
+        <div class="panel">
+            <h2><i class="fa-solid fa-robot"></i> 22. AI Executive Assistant Core</h2>
+            <div class="item-row"><span>สถานะระบบเลขา</span><strong style="color:var(--success)">Online (Active)</strong></div>
+            <div class="item-row"><span>ระดับการประมวลผล</span><strong style="color:var(--accent)">Full Autonomy</strong></div>
+            <button class="btn-exec" onclick="executeSystem(22, 'ตั้งค่าระบบเลขาอัจฉริยะ', 'ผลการตรวจสอบ: ระบบสมองกลเลขาอัจฉริยะเชื่อมต่อฐานข้อมูลสมบูรณ์ พร้อมรับคำสั่งบริหารจัดการระดับสูง')">ตั้งค่าระบบเลขาอัจฉริยะ</button>
         </div>
 
     <!-- Modal Popup สำหรับแสดงผลลัพธ์ -->
