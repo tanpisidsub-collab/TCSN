@@ -1,195 +1,322 @@
-<!-- ================= ระบบพอร์ทัล 20 โมดูล (Interactive Enterprise Suites) ================= -->
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; padding: 20px;">
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TCSN Enterprise Core - Executive Control Center</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --panel-bg: #161b22;
+            --border-color: #30363d;
+            --text-color: #c9d1d9;
+            --accent: #00e5ff;
+            --success: #22c55e;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+        }
+        header h1 {
+            color: var(--accent);
+            margin: 0;
+            font-size: 24px;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+        .panel {
+            background-color: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .panel h2 {
+            font-size: 16px;
+            color: #fff;
+            margin-top: 0;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+        .item-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+        .btn-exec {
+            margin-top: 10px;
+            width: 100%;
+            padding: 8px;
+            background: var(--accent);
+            color: #000;
+            border: none;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .btn-exec:hover {
+            opacity: 0.85;
+        }
+        .full-width {
+            grid-column: 1 / -1;
+        }
+        .log-box {
+            background: #05070a;
+            color: #00ffcc;
+            padding: 10px;
+            font-family: monospace;
+            height: 120px;
+            overflow-y: auto;
+            margin-top: 10px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            font-size: 12px;
+        }
+        .command-bar {
+            margin-top: 10px;
+            display: flex;
+            gap: 10px;
+        }
+        .command-bar input {
+            flex: 1;
+            padding: 8px;
+            background: #111;
+            color: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+        .command-bar button {
+            padding: 8px 15px;
+            background: var(--success);
+            color: #000;
+            font-weight: bold;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
 
-    <!-- 1. ERM & Cybersecurity -->
-    <div class="panel">
-        <h2><i class="fa-solid fa-shield-halved"></i> 1. Cyber Defense & Firewall</h2>
-        <div class="item-row"><span>สถานะระบบป้องกัน</span><strong style="color:#22c55e">Active (Secure)</strong></div>
-        <div class="item-row"><span>ภัยคุกคามที่ถูกบล็อก</span><strong>0 ครั้งวันนี้</strong></div>
-        <button onclick="executeSystem(1)" style="margin-top:10px; width:100%; padding:6px; background:#00e5ff; border:none; font-weight:bold; cursor:pointer;">สแกนความปลอดภัย</button>
-    </div>
+    <header>
+        <h1><i class="fa-solid fa-shield-halved"></i> TCSN ENTERPRISE EXECUTIVE CONTROL CENTER</h1>
+        <p style="margin: 5px 0 0; font-size: 12px; color: #8b949e;">ระบบบริหารจัดการกลางระดับสูงสุด (Full Access & Autonomous Suite)</p>
+    </header>
 
-    <!-- 2. Treasury & Auto-Finance -->
-    <div class="panel">
-        <h2><i class="fa-solid fa-wallet"></i> 2. Treasury & Auto-Finance</h2>
-        <div class="item-row"><span>กระแสเงินสดสำรอง</span><strong style="color:var(--accent)">เสถียรสูงสุด</strong></div>
-        <div class="item-row"><span>รายการรอตรวจสอบ</span><strong>0 รายการ</strong></div>
-        <button onclick="executeSystem(2)" style="margin-top:10px; width:100%; padding:6px; background:#00e5ff; border:none; font-weight:bold; cursor:pointer;">ตรวจสอบงบประมาณ</button>
-    </div>
+    <div class="grid-container">
 
-    <!-- 3. HR Talent & KPI -->
-    <div class="panel">
-        <h2><i class="fa-solid fa-user-tie"></i> 3. HR Talent & KPI Analytics</h2>
-        <div class="item-row"><span>ดัชนีความสุของค์กร</span><strong style="color:#22c55e">98.5%</strong></div>
-        <div class="item-row"><span>อัตราการเข้างาน</span><strong style="color:#22c55e">ปกติ</strong></div>
-        <button onclick="executeSystem(3)" style="margin-top:10px; width:100%; padding:6px; background:#00e5ff; border:none; font-weight:bold; cursor:pointer;">ดูรายงานกำลังพล</button>
-    </div>
-
-    <!-- 4. Smart Asset & Inventory -->
-    <div class="panel">
-        <h2><i class="fa-solid fa-boxes-packing"></i> 4. Smart Asset & Inventory</h2>
-        <div class="item-row"><span>อุปกรณ์พร้อมใช้</span><strong style="color:#22c55e">99.2%</strong></div>
-        <div class="item-row"><span>รอบการตรวจสอบ</span><strong>ใน 30 วัน</strong></div>
-        <button onclick="executeSystem(4)" style="margin-top:10px; width:100%; padding:6px; background:#00e5ff; border:none; font-weight:bold; cursor:pointer;">เช็คสต็อกพัสดุ</button>
-    </div>
-
-    <!-- 5. Internal Communications -->
-    <div class="panel">
-        <h2><i class="fa-solid fa-bullhorn"></i> 5. Internal Communications</h2>
-        <div class="item-row"><span>ประกาศล่าสุด</span><strong style="color:red">Red Alert</strong></div>
-        <div class="item-row"><span>อัตราการรับทราบ</span><strong style="color:#22c55e">100%</strong></div>
-        <button onclick="executeSystem(5)" style="margin-top:10px; width:100%; padding:6px; background:#00e5ff; border:none; font-weight:bold; cursor:pointer;">ออกประกาศด่วน</button>
-    </div>
-
-    <!-- 6. Enterprise Project Portfolio -->
-    <div class="panel">
-        <h2><i class="fa-solid fa-diagram-project"></i> 6. Enterprise Project Portfolio</h2>
-        <div class="item-row"><span>โครงการทั้งหมด</span><strong>12 โครงการ</strong></div>
-        <div class="item-row"><span>ตรงตามกำหนด</span><strong style="color:#22c55e">100%</strong></div>
-        <button onclick="executeSystem(6)" style="margin-top:10px; width:100%; padding:6px; background:#00e5ff; border:none; font-weight:bold; cursor:pointer;">ติดตามโครงการ</button>
-    </div>
-
-    <!-- 7. AI Helpdesk & IT Support -->
-    <div class="panel">
-        <h2><i class="fa-solid fa-headset"></i> 7. AI Helpdesk & IT Support</h2>
-        <div class="item-row"><span>เคสคงค้าง</span><strong style="color:#22c55e">0 เคส</strong></div>
-        <div class="item-row"><span>เวลาตอบสนอง</span><strong style="color:#22c55e">&lt; 1 นาที</strong></div>
-        <button onclick="executeSystem(7)" style="margin-top:10px; width:100%; padding:6px; background:#00e5ff; border:none; font-weight:bold; cursor:pointer;">เปิดเคสซัพพอร์ต</button>
-    </div>
-
-    <!-- 8. Legal & Contract Management -->
-    <div class="panel">
-        <h2><i class="fa-solid fa-scale-balanced"></i> 8. Legal & Contract Management</h2>
-        <div class="item-row"><span>ความถูกต้องกฎหมาย</span><strong style="color:#22c55e">100% Compliant</strong></div>
-        <div class="item-row"><span>สัญญาต้องต่ออายุ</span><strong style="color:#22c55e">0 ฉบับ</strong></div>
-        <button onclick="executeSystem(8)" style="margin-top:10px; width:100%; padding:6px; background:#00e5ff; border:none; font-weight:bold; cursor:pointer;">ตรวจสอบสัญญา</button>
-    </div>
-
-    <!-- 9. Executive BI Analytics -->
-    <div class="panel">
-        <h2><i class="fa-solid fa-chart-pie"></i> 9. Executive BI Analytics</h2>
-        <div class="item-row"><span>สถานะรายงานภาพรวม</span><strong style="color:var(--accent)">Real-time</strong></div>
-        <div class="item-row"><span>ความแม่นยำพยากรณ์</span><strong style="color:#22c55e">99.8%</strong></div>
-        <button onclick="executeSystem(9)" style="margin-top:10px; width:100%; padding:6px; background:#00e5ff; border:none; font-weight:bold; cursor:pointer;">เรียกดู BI Dashboard</button>
-    </div>
-
-    <!-- 10. Secure Communication Gateway -->
-    <div class="panel">
-        <h2><i class="fa-solid fa-envelope-circle-check"></i> 10. Secure Communication Gateway</h2>
-        <div class="item-row"><span>สถานะเกตเวย์อีเมล</span><strong style="color:#22c55e">Encrypted Active</strong></div>
-        <div class="item-row"><span>ความปลอดภัยข้อมูล</span><strong style="color:#22c55e">Maximum</strong></div>
-        <button onclick="executeSystem(10)" style="margin-top:10px; width:100%; padding:6px; background:#00e5ff; border:none; font-weight:bold; cursor:pointer;">ทดสอบส่งอีเมลปลอดภัย</button>
-    </div>
-
-    <!-- 11. E-Approval Executive Sign -->
-    <div class="panel">
-        <h2><i class="fa-solid fa-file-signature"></i> 11. E-Approval Executive Sign</h2>
-        <div class="item-row"><span>รอการลงนาม</span><strong style="color:#22c55e">0 ฉบับ</strong></div>
-        <div class="item-row"><span>อนุมัติแล้ววันนี้</span><strong style="color:#22c55e">17 ฉบับ</strong></div>
-        <button onclick="executeSystem(11)" style="margin-top:10px; width:100%; padding:6px; background:#00e5ff; border:none; font-weight:bold; cursor:pointer;">ลงนามเอกสารด่วน</button>
-    </div>
-
-    <!-- 12. Strategic Risk Management -->
-    <div class="panel">
-        <h2><i class="fa-solid fa-triangle-exclamation"></i> 12. Strategic Risk Management</h2>
-        <div class="item-row"><span>ระดับความเสี่ยงองค์กร</span><strong style="color:#22c55e">ต่ำมาก</strong></div>
-        <div class="item-row"><span>มาตรการควบคุม</span><strong style="color:#22c55e">สมบูรณ์</strong></div>
-        <button onclick="executeSystem(12)" style="margin-top:10px; width:100%; padding:6px; background:#00e5ff; border:none; font-weight:bold; cursor:pointer;">ประเมินความเสี่ยง</button>
-    </div>
-
-    <!-- 13. Executive Scheduling & Meeting -->
-    <div class="panel">
-        <h2><i class="fa-solid fa-calendar-check"></i> 13. Executive Scheduling & Meeting</h2>
-        <div class="item-row"><span>การนัดหมายวันนี้</span><strong>3 วาระ</strong></div>
-        <div class="item-row"><span>สถานะการยืนยัน</span><strong style="color:#22c55e">ครบถ้วน</strong></div>
-        <button onclick="executeSystem(13)" style="margin-top:10px; width:100%; padding:6px; background:#00e5ff; border:none; font-weight:bold; cursor:pointer;">จัดตารางประชุม</button>
-    </div>
-
-    <!-- 14. Vendor & Partner Management -->
-    <div class="panel">
-        <h2><i class="fa-solid fa-handshake"></i> 14. Vendor & Partner Management</h2>
-        <div class="item-row"><span>คู่ค้าหลักที่ active</span><strong>15 ราย</strong></div>
-        <div class="item-row"><span>ประเมินผลงาน</span><strong style="color:#22c55e">ผ่านเกณฑ์</strong></div>
-        <button onclick="executeSystem(14)" style="margin-top:10px; width:100%; padding:6px; background:#00e5ff; border:none; font-weight:bold; cursor:pointer;">ตรวจสอบคู่ค้า</button>
-    </div>
-
-    <!-- 15. Quality Assurance & Audit -->
-    <div class="panel">
-        <h2><i class="fa-solid fa-clipboard-check"></i> 15. Quality Assurance & Audit</h2>
-        <div class="item-row"><span>มาตรฐานการตรวจสอบ</span><strong style="color:#22c55e">ISO Certified</strong></div>
-        <div class="item-row"><span>ข้อบกพร่องพบ</span><strong style="color:#22c55e">0 รายการ</strong></div>
-        <button onclick="executeSystem(15)" style="margin-top:10px; width:100%; padding:6px; background:#00e5ff; border:none; font-weight:bold; cursor:pointer;">เรียกรายงาน Audit</button>
-    </div>
-
-    <!-- 16. Corporate Innovation Hub -->
-    <div class="panel">
-        <h2><i class="fa-solid fa-lightbulb"></i> 16. Corporate Innovation Hub</h2>
-        <div class="item-row"><span>โครงการนวัตกรรม</span><strong>5 โครงการ</strong></div>
-        <div class="item-row"><span>สถานะ R&D</span><strong style="color:#22c55e">ก้าวหน้า</strong></div>
-        <button onclick="executeSystem(16)" style="margin-top:10px; width:100%; padding:6px; background:#00e5ff; border:none; font-weight:bold; cursor:pointer;">ดูโปรเจกต์นวัตกรรม</button>
-    </div>
-
-    <!-- 17. Facility & Smart Office -->
-    <div class="panel">
-        <h2><i class="fa-solid fa-building-user"></i> 17. Facility & Smart Office</h2>
-        <div class="item-row"><span>ระบบอาคารอัจฉริยะ</span><strong style="color:#22c55e">Normal</strong></div>
-        <div class="item-row"><span>พลังงานประหยัด</span><strong style="color:#22c55e">optimal</strong></div>
-        <button onclick="executeSystem(17)" style="margin-top:10px; width:100%; padding:6px; background:#00e5ff; border:none; font-weight:bold; cursor:pointer;">เช็คสถานะอาคาร</button>
-    </div>
-
-    <!-- 18. PR & Brand Reputation -->
-    <div class="panel">
-        <h2><i class="fa-solid fa-bullseye"></i> 18. PR & Brand Reputation</h2>
-        <div class="item-row"><span>ภาพลักษณ์องค์กร</span><strong style="color:#22c55e">Positive (99%)</strong></div>
-        <div class="item-row"><span>ข่าวสารประชาสัมพันธ์</span><strong style="color:#22c55e">ปกติ</strong></div>
-        <button onclick="executeSystem(18)" style="margin-top:10px; width:100%; padding:6px; background:#00e5ff; border:none; font-weight:bold; cursor:pointer;">วิเคราะห์กระแสข่าว</button>
-    </div>
-
-    <!-- 19. Disaster Recovery & Backup -->
-    <div class="panel">
-        <h2><i class="fa-solid fa-database"></i> 19. Disaster Recovery & Backup</h2>
-        <div class="item-row"><span>สถานะสำรองข้อมูล</span><strong style="color:#22c55e">Synced 100%</strong></div>
-        <div class="item-row"><span>จุดสำรอง (DR Site)</span><strong style="color:#22c55e">Ready</strong></div>
-        <button onclick="executeSystem(19)" style="margin-top:10px; width:100%; padding:6px; background:#00e5ff; border:none; font-weight:bold; cursor:pointer;">ทดสอบระบบสำรอง</button>
-    </div>
-
-    <!-- 20. Executive Command Center Log -->
-    <div class="panel" style="grid-column: 1 / -1;">
-        <h2><i class="fa-solid fa-terminal"></i> 20. Executive Command Center Log</h2>
-        <div class="item-row"><span>สถานะเกตเวย์คำสั่ง</span><strong style="color:var(--accent)">Secure Gateway Active</strong></div>
-        <div class="log" id="logBox" style="background:#0a0a0a; color:#00ffcc; padding:10px; font-family:monospace; height:100px; overflow-y:auto; margin-top:10px; border-radius:4px;">
-            [System] Enterprise Suite & 20 Modules loaded.<br>
-            [Security] Ready for Executive Commands.
+        <!-- 1. ERM & Cybersecurity -->
+        <div class="panel">
+            <h2><i class="fa-solid fa-shield-halved"></i> 1. Cyber Defense & Firewall</h2>
+            <div class="item-row"><span>สถานะระบบป้องกัน</span><strong style="color:var(--success)">Active (Secure)</strong></div>
+            <div class="item-row"><span>ภัยคุกคามที่ถูกบล็อก</span><strong>0 ครั้งวันนี้</strong></div>
+            <button class="btn-exec" onclick="executeSystem(1)">สแกนความปลอดภัย</button>
         </div>
-        <div style="margin-top: 10px; display: flex; gap: 10px;">
-            <input type="text" id="commandInput" placeholder="พิมพ์คำสั่งบริหารจัดการ..." style="flex:1; padding:8px; background:#111; color:#fff; border:1px solid #333;">
-            <button onclick="processCommand()" style="padding:8px 15px; background:#22c55e; color:#000; font-weight:bold; border:none; cursor:pointer;">ส่งคำสั่ง</button>
+
+        <!-- 2. Treasury & Auto-Finance -->
+        <div class="panel">
+            <h2><i class="fa-solid fa-wallet"></i> 2. Treasury & Auto-Finance</h2>
+            <div class="item-row"><span>กระแสเงินสดสำรอง</span><strong style="color:var(--accent)">เสถียรสูงสุด</strong></div>
+            <div class="item-row"><span>รายการรอตรวจสอบ</span><strong>0 รายการ</strong></div>
+            <button class="btn-exec" onclick="executeSystem(2)">ตรวจสอบงบประมาณ</button>
         </div>
+
+        <!-- 3. HR Talent & KPI -->
+        <div class="panel">
+            <h2><i class="fa-solid fa-user-tie"></i> 3. HR Talent & KPI Analytics</h2>
+            <div class="item-row"><span>ดัชนีความสุของค์กร</span><strong style="color:var(--success)">98.5%</strong></div>
+            <div class="item-row"><span>อัตราการเข้างาน</span><strong style="color:var(--success)">ปกติ</strong></div>
+            <button class="btn-exec" onclick="executeSystem(3)">ดูรายงานกำลังพล</button>
+        </div>
+
+        <!-- 4. Smart Asset & Inventory -->
+        <div class="panel">
+            <h2><i class="fa-solid fa-boxes-packing"></i> 4. Smart Asset & Inventory</h2>
+            <div class="item-row"><span>อุปกรณ์พร้อมใช้</span><strong style="color:var(--success)">99.2%</strong></div>
+            <div class="item-row"><span>รอบการตรวจสอบ</span><strong>ใน 30 วัน</strong></div>
+            <button class="btn-exec" onclick="executeSystem(4)">เช็คสต็อกพัสดุ</button>
+        </div>
+
+        <!-- 5. Internal Communications -->
+        <div class="panel">
+            <h2><i class="fa-solid fa-bullhorn"></i> 5. Internal Communications</h2>
+            <div class="item-row"><span>ประกาศล่าสุด</span><strong style="color:red">Red Alert</strong></div>
+            <div class="item-row"><span>อัตราการรับทราบ</span><strong style="color:var(--success)">100%</strong></div>
+            <button class="btn-exec" onclick="executeSystem(5)">ออกประกาศด่วน</button>
+        </div>
+
+        <!-- 6. Enterprise Project Portfolio -->
+        <div class="panel">
+            <h2><i class="fa-solid fa-diagram-project"></i> 6. Enterprise Project Portfolio</h2>
+            <div class="item-row"><span>โครงการทั้งหมด</span><strong>12 โครงการ</strong></div>
+            <div class="item-row"><span>ตรงตามกำหนด</span><strong style="color:var(--success)">100%</strong></div>
+            <button class="btn-exec" onclick="executeSystem(6)">ติดตามโครงการ</button>
+        </div>
+
+        <!-- 7. AI Helpdesk & IT Support -->
+        <div class="panel">
+            <h2><i class="fa-solid fa-headset"></i> 7. AI Helpdesk & IT Support</h2>
+            <div class="item-row"><span>เคสคงค้าง</span><strong style="color:var(--success)">0 เคส</strong></div>
+            <div class="item-row"><span>เวลาตอบสนอง</span><strong style="color:var(--success)">&lt; 1 นาที</strong></div>
+            <button class="btn-exec" onclick="executeSystem(7)">เปิดเคสซัพพอร์ต</button>
+        </div>
+
+        <!-- 8. Legal & Contract Management -->
+        <div class="panel">
+            <h2><i class="fa-solid fa-scale-balanced"></i> 8. Legal & Contract Management</h2>
+            <div class="item-row"><span>ความถูกต้องกฎหมาย</span><strong style="color:var(--success)">100% Compliant</strong></div>
+            <div class="item-row"><span>สัญญาต้องต่ออายุ</span><strong style="color:var(--success)">0 ฉบับ</strong></div>
+            <button class="btn-exec" onclick="executeSystem(8)">ตรวจสอบสัญญา</button>
+        </div>
+
+        <!-- 9. Executive BI Analytics -->
+        <div class="panel">
+            <h2><i class="fa-solid fa-chart-pie"></i> 9. Executive BI Analytics</h2>
+            <div class="item-row"><span>สถานะรายงานภาพรวม</span><strong style="color:var(--accent)">Real-time</strong></div>
+            <div class="item-row"><span>ความแม่นยำพยากรณ์</span><strong style="color:var(--success)">99.8%</strong></div>
+            <button class="btn-exec" onclick="executeSystem(9)">เรียกดู BI Dashboard</button>
+        </div>
+
+        <!-- 10. Secure Communication Gateway -->
+        <div class="panel">
+            <h2><i class="fa-solid fa-envelope-circle-check"></i> 10. Secure Communication Gateway</h2>
+            <div class="item-row"><span>สถานะเกตเวย์อีเมล</span><strong style="color:var(--success)">Encrypted Active</strong></div>
+            <div class="item-row"><span>ความปลอดภัยข้อมูล</span><strong style="color:var(--success)">Maximum</strong></div>
+            <button class="btn-exec" onclick="executeSystem(10)">ทดสอบส่งอีเมลปลอดภัย</button>
+        </div>
+
+        <!-- 11. E-Approval Executive Sign -->
+        <div class="panel">
+            <h2><i class="fa-solid fa-file-signature"></i> 11. E-Approval Executive Sign</h2>
+            <div class="item-row"><span>รอการลงนาม</span><strong style="color:var(--success)">0 ฉบับ</strong></div>
+            <div class="item-row"><span>อนุมัติแล้ววันนี้</span><strong style="color:var(--success)">17 ฉบับ</strong></div>
+            <button class="btn-exec" onclick="executeSystem(11)">ลงนามเอกสารด่วน</button>
+        </div>
+
+        <!-- 12. Strategic Risk Management -->
+        <div class="panel">
+            <h2><i class="fa-solid fa-triangle-exclamation"></i> 12. Strategic Risk Management</h2>
+            <div class="item-row"><span>ระดับความเสี่ยงองค์กร</span><strong style="color:var(--success)">ต่ำมาก</strong></div>
+            <div class="item-row"><span>มาตรการควบคุม</span><strong style="color:var(--success)">สมบูรณ์</strong></div>
+            <button class="btn-exec" onclick="executeSystem(12)">ประเมินความเสี่ยง</button>
+        </div>
+
+        <!-- 13. Executive Scheduling & Meeting -->
+        <div class="panel">
+            <h2><i class="fa-solid fa-calendar-check"></i> 13. Executive Scheduling & Meeting</h2>
+            <div class="item-row"><span>การนัดหมายวันนี้</span><strong>3 วาระ</strong></div>
+            <div class="item-row"><span>สถานะการยืนยัน</span><strong style="color:var(--success)">ครบถ้วน</strong></div>
+            <button class="btn-exec" onclick="executeSystem(13)">จัดตารางประชุม</button>
+        </div>
+
+        <!-- 14. Vendor & Partner Management -->
+        <div class="panel">
+            <h2><i class="fa-solid fa-handshake"></i> 14. Vendor & Partner Management</h2>
+            <div class="item-row"><span>คู่ค้าหลักที่ active</span><strong>15 ราย</strong></div>
+            <div class="item-row"><span>ประเมินผลงาน</span><strong style="color:var(--success)">ผ่านเกณฑ์</strong></div>
+            <button class="btn-exec" onclick="executeSystem(14)">ตรวจสอบคู่ค้า</button>
+        </div>
+
+        <!-- 15. Quality Assurance & Audit -->
+        <div class="panel">
+            <h2><i class="fa-solid fa-clipboard-check"></i> 15. Quality Assurance & Audit</h2>
+            <div class="item-row"><span>มาตรฐานการตรวจสอบ</span><strong style="color:var(--success)">ISO Certified</strong></div>
+            <div class="item-row"><span>ข้อบกพร่องพบ</span><strong style="color:var(--success)">0 รายการ</strong></div>
+            <button class="btn-exec" onclick="executeSystem(15)">เรียกรายงาน Audit</button>
+        </div>
+
+        <!-- 16. Corporate Innovation Hub -->
+        <div class="panel">
+            <h2><i class="fa-solid fa-lightbulb"></i> 16. Corporate Innovation Hub</h2>
+            <div class="item-row"><span>โครงการนวัตกรรม</span><strong>5 โครงการ</strong></div>
+            <div class="item-row"><span>สถานะ R&D</span><strong style="color:var(--success)">ก้าวหน้า</strong></div>
+            <button class="btn-exec" onclick="executeSystem(16)">ดูโปรเจกต์นวัตกรรม</button>
+        </div>
+
+        <!-- 17. Facility & Smart Office -->
+        <div class="panel">
+            <h2><i class="fa-solid fa-building-user"></i> 17. Facility & Smart Office</h2>
+            <div class="item-row"><span>ระบบอาคารอัจฉริยะ</span><strong style="color:var(--success)">Normal</strong></div>
+            <div class="item-row"><span>พลังงานประหยัด</span><strong style="color:var(--success)">Optimal</strong></div>
+            <button class="btn-exec" onclick="executeSystem(17)">เช็คสถานะอาคาร</button>
+        </div>
+
+        <!-- 18. PR & Brand Reputation -->
+        <div class="panel">
+            <h2><i class="fa-solid fa-bullseye"></i> 18. PR & Brand Reputation</h2>
+            <div class="item-row"><span>ภาพลักษณ์องค์กร</span><strong style="color:var(--success)">Positive (99%)</strong></div>
+            <div class="item-row"><span>ข่าวสารประชาสัมพันธ์</span><strong style="color:var(--success)">ปกติ</strong></div>
+            <button class="btn-exec" onclick="executeSystem(18)">วิเคราะห์กระแสข่าว</button>
+        </div>
+
+        <!-- 19. Disaster Recovery & Backup -->
+        <div class="panel">
+            <h2><i class="fa-solid fa-database"></i> 19. Disaster Recovery & Backup</h2>
+            <div class="item-row"><span>สถานะสำรองข้อมูล</span><strong style="color:var(--success)">Synced 100%</strong></div>
+            <div class="item-row"><span>จุดสำรอง (DR Site)</span><strong style="color:var(--success)">Ready</strong></div>
+            <button class="btn-exec" onclick="executeSystem(19)">ทดสอบระบบสำรอง</button>
+        </div>
+
+        <!-- 20. Executive Command Center Log -->
+        <div class="panel full-width">
+            <h2><i class="fa-solid fa-terminal"></i> 20. Executive Command Center Log</h2>
+            <div class="item-row"><span>สถานะเกตเวย์คำสั่ง</span><strong style="color:var(--accent)">Secure Gateway Active</strong></div>
+            <div class="log-box" id="logBox">
+                [System] Enterprise Suite & 20 Modules loaded successfully.<br>
+                [Security] Ready for Executive Commands.
+            </div>
+            <div class="command-bar">
+                <input type="text" id="commandInput" placeholder="พิมพ์คำสั่งบริหารจัดการระบบ...">
+                <button onclick="processCommand()">ส่งคำสั่ง</button>
+            </div>
+        </div>
+
     </div>
 
-</div>
+    <script>
+        function executeSystem(id) {
+            const logBox = document.getElementById('logBox');
+            const time = new Date().toLocaleTimeString();
+            if(logBox) {
+                logBox.innerHTML += `<br>[${time}] <span style="color:#00e5ff">SYSTEM EXECUTION:</span> โมดูลที่ ${id} ทำงานเสร็จสมบูรณ์`;
+                logBox.scrollTop = logBox.scrollHeight;
+            }
+            alert(`ระบบโมดูลที่ ${id} ดำเนินการตามคำสั่งเรียบร้อยแล้วครับท่านประธาน!`);
+        }
 
-<script>
-function executeSystem(id) {
-    const logBox = document.getElementById('logBox');
-    const time = new Date().toLocaleTimeString();
-    if(logBox) {
-        logBox.innerHTML += `<br>[${time}] <span style="color:#00e5ff">SYSTEM EXECUTION:</span> โมดูลที่ ${id} ทำงานเสร็จสมบูรณ์เรียบร้อย`;
-        logBox.scrollTop = logBox.scrollHeight;
-    }
-    alert(`ระบบโมดูลที่ ${id} ดำเนินการตามคำสั่งเรียบร้อยแล้วครับท่านประธาน!`);
-}
+        function processCommand() {
+            const input = document.getElementById('commandInput').value;
+            const logBox = document.getElementById('logBox');
+            const time = new Date().toLocaleTimeString();
+            if(!input) return alert('โปรดระบุคำสั่งสำหรับท่านประธาน');
+            if(logBox) {
+                logBox.innerHTML += `<br>[${time}] <span style="color:#00e5ff">COMMAND:</span> ${input}`;
+                logBox.scrollTop = logBox.scrollHeight;
+            }
+            alert(`คำสั่งถูกกระจายไปยังระบบบริหารจัดการเรียบร้อยแล้วครับท่านประธาน!`);
+            document.getElementById('commandInput').value = '';
+        }
+    </script>
+</body>
+</html>
 
-function processCommand() {
-    const input = document.getElementById('commandInput').value;
-    const logBox = document.getElementById('logBox');
-    const time = new Date().toLocaleTimeString();
-    if(!input) return alert('โปรดระบุคำสั่งสำหรับท่านประธาน');
-    if(logBox) {
-        logBox.innerHTML += `<br>[${time}] <span style="color:#00e5ff">COMMAND:</span> ${input}`;
-        logBox.scrollTop = logBox.scrollHeight;
-    }
-    alert(`คำสั่งถูกกระจายไปยังระบบบริหารจัดการเรียบร้อยแล้วครับท่านประธาน!`);
-    document.getElementById('commandInput').value = '';
-}
-</script>
+
