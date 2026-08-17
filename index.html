@@ -45,7 +45,7 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
         .panel h2 {
-            font-size: 16px;
+            font-size: 15px;
             color: #fff;
             margin-top: 0;
             margin-bottom: 12px;
@@ -113,13 +113,49 @@
             border-radius: 4px;
             cursor: pointer;
         }
+        /* Modal Result Box Style */
+        #resultModal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background: var(--panel-bg);
+            border: 1px solid var(--accent);
+            padding: 20px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 10px 25px rgba(0,229,255,0.2);
+        }
+        .modal-content h3 {
+            color: var(--accent);
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .close-btn {
+            background: #ff4d4d;
+            color: #fff;
+            border: none;
+            padding: 6px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            float: right;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
 
     <header>
         <h1><i class="fa-solid fa-shield-halved"></i> TCSN ENTERPRISE EXECUTIVE CONTROL CENTER</h1>
-        <p style="margin: 5px 0 0; font-size: 12px; color: #8b949e;">ระบบบริหารจัดการกลางระดับสูงสุด (Full Access & Autonomous Suite)</p>
+        <p style="margin: 5px 0 0; font-size: 12px; color: #8b949e;">ระบบบริหารจัดการกลางระดับสูงสุด (Interactive Live Data Suite)</p>
     </header>
 
     <div class="grid-container">
@@ -127,9 +163,9 @@
         <!-- 1. ERM & Cybersecurity -->
         <div class="panel">
             <h2><i class="fa-solid fa-shield-halved"></i> 1. Cyber Defense & Firewall</h2>
-            <div class="item-row"><span>สถานะระบบป้องกัน</span><strong style="color:var(--success)">Active (Secure)</strong></div>
-            <div class="item-row"><span>ภัยคุกคามที่ถูกบล็อก</span><strong>0 ครั้งวันนี้</strong></div>
-            <button class="btn-exec" onclick="executeSystem(1)">สแกนความปลอดภัย</button>
+            <div class="item-row"><span>สถานะระบบป้องกัน</span><strong id="sys1-status" style="color:var(--success)">Active (Secure)</strong></div>
+            <div class="item-row"><span>ภัยคุกคามที่ถูกบล็อก</span><strong id="sys1-val">0 ครั้งวันนี้</strong></div>
+            <button class="btn-exec" onclick="executeSystem(1, 'สแกนความปลอดภัยระบบไซเบอร์', 'ผลการตรวจเช็ก: ปลอดภัย ไม่พบความผิดปกติ ไฟร์วอลล์ทำงานเต็มประสิทธิภาพ')">สแกนความปลอดภัย</button>
         </div>
 
         <!-- 2. Treasury & Auto-Finance -->
@@ -137,7 +173,7 @@
             <h2><i class="fa-solid fa-wallet"></i> 2. Treasury & Auto-Finance</h2>
             <div class="item-row"><span>กระแสเงินสดสำรอง</span><strong style="color:var(--accent)">เสถียรสูงสุด</strong></div>
             <div class="item-row"><span>รายการรอตรวจสอบ</span><strong>0 รายการ</strong></div>
-            <button class="btn-exec" onclick="executeSystem(2)">ตรวจสอบงบประมาณ</button>
+            <button class="btn-exec" onclick="executeSystem(2, 'ตรวจสอบงบประมาณ', 'ผลการตรวจสอบ: กระแสเงินสดและงบประมาณสำรองคงเหลือสมบูรณ์ พร้อมเบิกจ่ายฉุกเฉิน')">ตรวจสอบงบประมาณ</button>
         </div>
 
         <!-- 3. HR Talent & KPI -->
@@ -145,7 +181,7 @@
             <h2><i class="fa-solid fa-user-tie"></i> 3. HR Talent & KPI Analytics</h2>
             <div class="item-row"><span>ดัชนีความสุของค์กร</span><strong style="color:var(--success)">98.5%</strong></div>
             <div class="item-row"><span>อัตราการเข้างาน</span><strong style="color:var(--success)">ปกติ</strong></div>
-            <button class="btn-exec" onclick="executeSystem(3)">ดูรายงานกำลังพล</button>
+            <button class="btn-exec" onclick="executeSystem(3, 'รายงานกำลังพล', 'ผลการวิเคราะห์: อัตรากำลังพลปฏิบัติงานครบถ้วน KPI ภาพรวมผ่านเกณฑ์ 98.5%')">ดูรายงานกำลังพล</button>
         </div>
 
         <!-- 4. Smart Asset & Inventory -->
@@ -153,7 +189,7 @@
             <h2><i class="fa-solid fa-boxes-packing"></i> 4. Smart Asset & Inventory</h2>
             <div class="item-row"><span>อุปกรณ์พร้อมใช้</span><strong style="color:var(--success)">99.2%</strong></div>
             <div class="item-row"><span>รอบการตรวจสอบ</span><strong>ใน 30 วัน</strong></div>
-            <button class="btn-exec" onclick="executeSystem(4)">เช็คสต็อกพัสดุ</button>
+            <button class="btn-exec" onclick="executeSystem(4, 'เช็คสต็อกพัสดุ', 'ผลการตรวจสอบ: สินทรัพย์และอุปกรณ์สำรองเพียงพอ ไม่พบรายการขาดแคลน')">เช็คสต็อกพัสดุ</button>
         </div>
 
         <!-- 5. Internal Communications -->
@@ -161,7 +197,7 @@
             <h2><i class="fa-solid fa-bullhorn"></i> 5. Internal Communications</h2>
             <div class="item-row"><span>ประกาศล่าสุด</span><strong style="color:red">Red Alert</strong></div>
             <div class="item-row"><span>อัตราการรับทราบ</span><strong style="color:var(--success)">100%</strong></div>
-            <button class="btn-exec" onclick="executeSystem(5)">ออกประกาศด่วน</button>
+            <button class="btn-exec" onclick="executeSystem(5, 'ออกประกาศด่วน', 'ผลการดำเนินงาน: กระจายประกาศแจ้งเตือนภายในองค์กรสำเร็จ พนักงานรับทราบครบ 100%')">ออกประกาศด่วน</button>
         </div>
 
         <!-- 6. Enterprise Project Portfolio -->
@@ -169,7 +205,7 @@
             <h2><i class="fa-solid fa-diagram-project"></i> 6. Enterprise Project Portfolio</h2>
             <div class="item-row"><span>โครงการทั้งหมด</span><strong>12 โครงการ</strong></div>
             <div class="item-row"><span>ตรงตามกำหนด</span><strong style="color:var(--success)">100%</strong></div>
-            <button class="btn-exec" onclick="executeSystem(6)">ติดตามโครงการ</button>
+            <button class="btn-exec" onclick="executeSystem(6, 'ติดตามโครงการ', 'ผลการตรวจสอบ: โครงการทั้งหมด 12 โครงการดำเนินงานตรงตามแผนงาน (On-track)')">ติดตามโครงการ</button>
         </div>
 
         <!-- 7. AI Helpdesk & IT Support -->
@@ -177,7 +213,7 @@
             <h2><i class="fa-solid fa-headset"></i> 7. AI Helpdesk & IT Support</h2>
             <div class="item-row"><span>เคสคงค้าง</span><strong style="color:var(--success)">0 เคส</strong></div>
             <div class="item-row"><span>เวลาตอบสนอง</span><strong style="color:var(--success)">&lt; 1 นาที</strong></div>
-            <button class="btn-exec" onclick="executeSystem(7)">เปิดเคสซัพพอร์ต</button>
+            <button class="btn-exec" onclick="executeSystem(7, 'เปิดเคสซัพพอร์ต', 'ผลการทำงาน: ระบบ AI Helpdesk เคลียร์เคสทั้งหมดเรียบร้อย ไม่มีเคสตกค้าง')">เปิดเคสซัพพอร์ต</button>
         </div>
 
         <!-- 8. Legal & Contract Management -->
@@ -185,7 +221,7 @@
             <h2><i class="fa-solid fa-scale-balanced"></i> 8. Legal & Contract Management</h2>
             <div class="item-row"><span>ความถูกต้องกฎหมาย</span><strong style="color:var(--success)">100% Compliant</strong></div>
             <div class="item-row"><span>สัญญาต้องต่ออายุ</span><strong style="color:var(--success)">0 ฉบับ</strong></div>
-            <button class="btn-exec" onclick="executeSystem(8)">ตรวจสอบสัญญา</button>
+            <button class="btn-exec" onclick="executeSystem(8, 'ตรวจสอบสัญญา', 'ผลการตรวจสอบ: สัญญาและข้อบังคับถูกต้องตามกฎหมาย PDPA สมบูรณ์')">ตรวจสอบสัญญา</button>
         </div>
 
         <!-- 9. Executive BI Analytics -->
@@ -193,7 +229,7 @@
             <h2><i class="fa-solid fa-chart-pie"></i> 9. Executive BI Analytics</h2>
             <div class="item-row"><span>สถานะรายงานภาพรวม</span><strong style="color:var(--accent)">Real-time</strong></div>
             <div class="item-row"><span>ความแม่นยำพยากรณ์</span><strong style="color:var(--success)">99.8%</strong></div>
-            <button class="btn-exec" onclick="executeSystem(9)">เรียกดู BI Dashboard</button>
+            <button class="btn-exec" onclick="executeSystem(9, 'เรียกดู BI Dashboard', 'ผลการประมวลผล: แดชบอร์ดแสดงผลกำไรและตัวชี้วัดธุรกิจอัปเดตเรียบร้อย')">เรียกดู BI Dashboard</button>
         </div>
 
         <!-- 10. Secure Communication Gateway -->
@@ -201,7 +237,7 @@
             <h2><i class="fa-solid fa-envelope-circle-check"></i> 10. Secure Communication Gateway</h2>
             <div class="item-row"><span>สถานะเกตเวย์อีเมล</span><strong style="color:var(--success)">Encrypted Active</strong></div>
             <div class="item-row"><span>ความปลอดภัยข้อมูล</span><strong style="color:var(--success)">Maximum</strong></div>
-            <button class="btn-exec" onclick="executeSystem(10)">ทดสอบส่งอีเมลปลอดภัย</button>
+            <button class="btn-exec" onclick="executeSystem(10, 'ทดสอบส่งอีเมลปลอดภัย', 'ผลการทดสอบ: เกตเวย์เข้ารหัสอีเมลปลายทางทำงานสมบูรณ์ พร้อมส่งข้อมูล')">ทดสอบส่งอีเมลปลอดภัย</button>
         </div>
 
         <!-- 11. E-Approval Executive Sign -->
@@ -209,7 +245,7 @@
             <h2><i class="fa-solid fa-file-signature"></i> 11. E-Approval Executive Sign</h2>
             <div class="item-row"><span>รอการลงนาม</span><strong style="color:var(--success)">0 ฉบับ</strong></div>
             <div class="item-row"><span>อนุมัติแล้ววันนี้</span><strong style="color:var(--success)">17 ฉบับ</strong></div>
-            <button class="btn-exec" onclick="executeSystem(11)">ลงนามเอกสารด่วน</button>
+            <button class="btn-exec" onclick="executeSystem(11, 'ลงนามเอกสารด่วน', 'ผลการทำงาน: เอกสารทั้งหมดได้รับการลงนามและประทับตราดิจิทัลเรียบร้อย')">ลงนามเอกสารด่วน</button>
         </div>
 
         <!-- 12. Strategic Risk Management -->
@@ -217,7 +253,7 @@
             <h2><i class="fa-solid fa-triangle-exclamation"></i> 12. Strategic Risk Management</h2>
             <div class="item-row"><span>ระดับความเสี่ยงองค์กร</span><strong style="color:var(--success)">ต่ำมาก</strong></div>
             <div class="item-row"><span>มาตรการควบคุม</span><strong style="color:var(--success)">สมบูรณ์</strong></div>
-            <button class="btn-exec" onclick="executeSystem(12)">ประเมินความเสี่ยง</button>
+            <button class="btn-exec" onclick="executeSystem(12, 'ประเมินความเสี่ยง', 'ผลการประเมิน: ไม่พบความเสี่ยงระดับวิกฤต มาตรการควบคุมมีประสิทธิภาพสูง')">ประเมินความเสี่ยง</button>
         </div>
 
         <!-- 13. Executive Scheduling & Meeting -->
@@ -225,7 +261,7 @@
             <h2><i class="fa-solid fa-calendar-check"></i> 13. Executive Scheduling & Meeting</h2>
             <div class="item-row"><span>การนัดหมายวันนี้</span><strong>3 วาระ</strong></div>
             <div class="item-row"><span>สถานะการยืนยัน</span><strong style="color:var(--success)">ครบถ้วน</strong></div>
-            <button class="btn-exec" onclick="executeSystem(13)">จัดตารางประชุม</button>
+            <button class="btn-exec" onclick="executeSystem(13, 'จัดตารางประชุม', 'ผลการทำงาน: ซิงค์วาระการประชุมและจัดสรรเวลา Buffer สำหรับท่านประธานเรียบร้อย')">จัดตารางประชุม</button>
         </div>
 
         <!-- 14. Vendor & Partner Management -->
@@ -233,7 +269,7 @@
             <h2><i class="fa-solid fa-handshake"></i> 14. Vendor & Partner Management</h2>
             <div class="item-row"><span>คู่ค้าหลักที่ active</span><strong>15 ราย</strong></div>
             <div class="item-row"><span>ประเมินผลงาน</span><strong style="color:var(--success)">ผ่านเกณฑ์</strong></div>
-            <button class="btn-exec" onclick="executeSystem(14)">ตรวจสอบคู่ค้า</button>
+            <button class="btn-exec" onclick="executeSystem(14, 'ตรวจสอบคู่ค้า', 'ผลการตรวจสอบ: คู่ค้าหลัก 15 รายรักษามาตรฐานการส่งมอบได้ยอดเยี่ยม')">ตรวจสอบคู่ค้า</button>
         </div>
 
         <!-- 15. Quality Assurance & Audit -->
@@ -241,7 +277,7 @@
             <h2><i class="fa-solid fa-clipboard-check"></i> 15. Quality Assurance & Audit</h2>
             <div class="item-row"><span>มาตรฐานการตรวจสอบ</span><strong style="color:var(--success)">ISO Certified</strong></div>
             <div class="item-row"><span>ข้อบกพร่องพบ</span><strong style="color:var(--success)">0 รายการ</strong></div>
-            <button class="btn-exec" onclick="executeSystem(15)">เรียกรายงาน Audit</button>
+            <button class="btn-exec" onclick="executeSystem(15, 'เรียกรายงาน Audit', 'ผลการตรวจสอบ: ผลตรวจประเมินคุณภาพภายในผ่านเกณฑ์มาตรฐาน ISO 100%')">เรียกรายงาน Audit</button>
         </div>
 
         <!-- 16. Corporate Innovation Hub -->
@@ -249,7 +285,7 @@
             <h2><i class="fa-solid fa-lightbulb"></i> 16. Corporate Innovation Hub</h2>
             <div class="item-row"><span>โครงการนวัตกรรม</span><strong>5 โครงการ</strong></div>
             <div class="item-row"><span>สถานะ R&D</span><strong style="color:var(--success)">ก้าวหน้า</strong></div>
-            <button class="btn-exec" onclick="executeSystem(16)">ดูโปรเจกต์นวัตกรรม</button>
+            <button class="btn-exec" onclick="executeSystem(16, 'ดูโปรเจกต์นวัตกรรม', 'ผลการประเมิน: โปรเจกต์ R&D ทั้ง 5 โครงการมีความก้าวหน้าตามเป้าหมายไตรมาส')">ดูโปรเจกต์นวัตกรรม</button>
         </div>
 
         <!-- 17. Facility & Smart Office -->
@@ -257,7 +293,7 @@
             <h2><i class="fa-solid fa-building-user"></i> 17. Facility & Smart Office</h2>
             <div class="item-row"><span>ระบบอาคารอัจฉริยะ</span><strong style="color:var(--success)">Normal</strong></div>
             <div class="item-row"><span>พลังงานประหยัด</span><strong style="color:var(--success)">Optimal</strong></div>
-            <button class="btn-exec" onclick="executeSystem(17)">เช็คสถานะอาคาร</button>
+            <button class="btn-exec" onclick="executeSystem(17, 'เช็คสถานะอาคาร', 'ผลการตรวจสอบ: ระบบปรับอากาศ พลังงาน และความปลอดภัยอาคารทำงานสมบูรณ์')">เช็คสถานะอาคาร</button>
         </div>
 
         <!-- 18. PR & Brand Reputation -->
@@ -265,7 +301,7 @@
             <h2><i class="fa-solid fa-bullseye"></i> 18. PR & Brand Reputation</h2>
             <div class="item-row"><span>ภาพลักษณ์องค์กร</span><strong style="color:var(--success)">Positive (99%)</strong></div>
             <div class="item-row"><span>ข่าวสารประชาสัมพันธ์</span><strong style="color:var(--success)">ปกติ</strong></div>
-            <button class="btn-exec" onclick="executeSystem(18)">วิเคราะห์กระแสข่าว</button>
+            <button class="btn-exec" onclick="executeSystem(18, 'วิเคราะห์กระแสข่าว', 'ผลการวิเคราะห์: กระแสข่าวเชิงบวกสูงถึง 99% ไม่พบประเด็นความเสี่ยงทางประชาสัมพันธ์')">วิเคราะห์กระแสข่าว</button>
         </div>
 
         <!-- 19. Disaster Recovery & Backup -->
@@ -273,7 +309,7 @@
             <h2><i class="fa-solid fa-database"></i> 19. Disaster Recovery & Backup</h2>
             <div class="item-row"><span>สถานะสำรองข้อมูล</span><strong style="color:var(--success)">Synced 100%</strong></div>
             <div class="item-row"><span>จุดสำรอง (DR Site)</span><strong style="color:var(--success)">Ready</strong></div>
-            <button class="btn-exec" onclick="executeSystem(19)">ทดสอบระบบสำรอง</button>
+            <button class="btn-exec" onclick="executeSystem(19, 'ทดสอบระบบสำรอง', 'ผลการทดสอบ: ข้อมูลถูกสำรองและซิงค์ไปยังจุดสำรอง (DR Site) สมบูรณ์ 100%')">ทดสอบระบบสำรอง</button>
         </div>
 
         <!-- 20. Executive Command Center Log -->
@@ -292,15 +328,35 @@
 
     </div>
 
+    <!-- Modal Popup สำหรับแสดงผลลัพธ์ -->
+    <div id="resultModal">
+        <div class="modal-content">
+            <h3 id="modalTitle"><i class="fa-solid fa-circle-check"></i> ผลการทำงานระบบ</h3>
+            <p id="modalBody" style="color: #fff; font-size: 14px; line-height: 1.5; margin: 15px 0;">กำลังโหลดข้อมูล...</p>
+            <button class="close-btn" onclick="closeModal()">ปิดหน้าต่าง</button>
+            <div style="clear: both;"></div>
+        </div>
+    </div>
+
     <script>
-        function executeSystem(id) {
+        function executeSystem(id, actionName, resultDetails) {
             const logBox = document.getElementById('logBox');
             const time = new Date().toLocaleTimeString();
+            
+            // บันทึก Log ลงกล่อง Terminal ด้านล่าง
             if(logBox) {
-                logBox.innerHTML += `<br>[${time}] <span style="color:#00e5ff">SYSTEM EXECUTION:</span> โมดูลที่ ${id} ทำงานเสร็จสมบูรณ์`;
+                logBox.innerHTML += `<br>[${time}] <span style="color:#00e5ff">EXECUTE [โมดูลที่ ${id}]:</span> ${actionName} สำเร็จ`;
                 logBox.scrollTop = logBox.scrollHeight;
             }
-            alert(`ระบบโมดูลที่ ${id} ดำเนินการตามคำสั่งเรียบร้อยแล้วครับท่านประธาน!`);
+
+            // แสดงผลลัพธ์ผ่าน Popup Modal ชัดเจน
+            document.getElementById('modalTitle').innerHTML = `<i class="fa-solid fa-circle-check" style="color:var(--success)"></i> โมดูลที่ ${id}: ${actionName}`;
+            document.getElementById('modalBody').innerHTML = resultDetails;
+            document.getElementById('resultModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('resultModal').style.display = 'none';
         }
 
         function processCommand() {
@@ -308,15 +364,20 @@
             const logBox = document.getElementById('logBox');
             const time = new Date().toLocaleTimeString();
             if(!input) return alert('โปรดระบุคำสั่งสำหรับท่านประธาน');
+            
             if(logBox) {
                 logBox.innerHTML += `<br>[${time}] <span style="color:#00e5ff">COMMAND:</span> ${input}`;
                 logBox.scrollTop = logBox.scrollHeight;
             }
-            alert(`คำสั่งถูกกระจายไปยังระบบบริหารจัดการเรียบร้อยแล้วครับท่านประธาน!`);
+
+            // แสดงผล Popup สำหรับคำสั่งด่วน
+            document.getElementById('modalTitle').innerHTML = `<i class="fa-solid fa-terminal" style="color:var(--accent)"></i> ประมวลผลคำสั่งสำเร็จ`;
+            document.getElementById('modalBody').innerHTML = `คำสั่ง: "<strong>${input}</strong>"<br><br>สถานะ: ระบบกำลังดำเนินการตามคำสั่งของท่านประธานเรียบร้อยแล้ว`;
+            document.getElementById('resultModal').style.display = 'flex';
+
             document.getElementById('commandInput').value = '';
         }
     </script>
 </body>
 </html>
-
 
